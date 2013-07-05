@@ -16,6 +16,20 @@ guard :shell do
   end
 end
 
+# Copy fonts
+guard :shell do
+  watch %r{src/fonts/(.+)} do |m|
+    system "cd src && rake build:fonts"
+  end
+end
+
+# Copy images
+guard :shell do
+  watch %r{src/img/(.+)} do |m|
+    system "cd src && rake build:img"
+  end
+end
+
 # Use livereload to automatically refresh the browser
 guard 'livereload' do
   watch %r{resources/(.+)}
