@@ -1,0 +1,27 @@
+{
+  "modernizr" : "modernizr.js",
+  "jquery"    : "jquery.js",
+
+  // foundation
+  "foundation"  : "foundation/foundation.js",
+  "alerts"      : "foundation/foundation.alerts.js",
+  "clearing"    : "foundation/foundation.clearing.js",
+  "cookie"      : "foundation/foundation.cookie.js",
+  "dropdown"    : "foundation/foundation.dropdown.js",
+  "forms"       : "foundation/foundation.forms.js",
+  "interchange" : "foundation/foundation.interchange.js",
+  "joyride"     : "foundation/foundation.joyride.js",
+  "magellan"    : "foundation/foundation.magellan.js",
+  "orbit"       : "foundation/foundation.orbit.js",
+  "placeholder" : "foundation/foundation.placeholder.js",
+  "reveal"      : "foundation/foundation.reveal.js",
+  "section"     : "foundation/foundation.section.js",
+  "tooltips"    : "foundation/foundation.tooltips.js",
+  "topbar"      : "foundation/foundation.topbar.js",
+
+  // other components
+
+  // solution specific
+  "init": "init.js"
+}
+

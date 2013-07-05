@@ -1,0 +1,189 @@
+{
+  "name": "",
+  "glyphs": [
+    {
+      "search": [
+        "mail",
+        "email"
+      ],
+      "code": 9993,
+      "from": 9993,
+      "uid": "ae3so8q0b0n2h8esv9flua2nmwswa8fd",
+      "css": "mail",
+      "orig_css": "mail",
+      "orig_code": 9993,
+      "src": "modernpics"
+    },
+    {
+      "search": [
+        "quote"
+      ],
+      "code": 10077,
+      "uid": "661bd5ba1dad15ad9acbfcd8b8af76f3",
+      "file": "left_quote",
+      "css": "quote-left",
+      "orig_css": "quote-left",
+      "orig_code": 10077,
+      "src": "iconic",
+      "from": 10077
+    },
+    {
+      "search": [
+        "plus"
+      ],
+      "code": 10133,
+      "from": 10133,
+      "uid": "a66cdc7278e6b33b8bd44a141f5e1a8d",
+      "css": "plus-circled",
+      "orig_css": "plus-circled",
+      "orig_code": 10133,
+      "src": "entypo"
+    },
+    {
+      "search": [
+        "print"
+      ],
+      "code": 59158,
+      "from": 59158,
+      "uid": "7ssl5z5jrhu13tb13cd3gb4bdfkzbfzw",
+      "css": "print",
+      "orig_css": "print",
+      "orig_code": 59158,
+      "src": "modernpics"
+    },
+    {
+      "search": [
+        "location",
+        "mark",
+        "marker"
+      ],
+      "code": 59172,
+      "from": 59172,
+      "uid": "0d08dbb1dd648a43bdea81b7e6c9e036",
+      "css": "location",
+      "orig_css": "location",
+      "orig_code": 59172,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "arrow",
+        "right"
+      ],
+      "code": 61446,
+      "uid": "37910a1398001a5ccb541cb2a253a2c7",
+      "css": "right-open",
+      "orig_css": "right-open",
+      "orig_code": 61446,
+      "src": "mfglabs",
+      "from": 61446
+    },
+    {
+      "search": [
+        "arrow",
+        "left"
+      ],
+      "code": 61447,
+      "uid": "b714be5a812a474811604f700dfc87ce",
+      "css": "left-open",
+      "orig_css": "left-open",
+      "orig_code": 61447,
+      "src": "mfglabs",
+      "from": 61447
+    },
+    {
+      "search": [
+        "angle",
+        "left"
+      ],
+      "code": 61696,
+      "uid": "745f12abe1472d14f8f658de7e5aba66",
+      "css": "angle-double-left",
+      "orig_css": "angle-double-left",
+      "orig_code": 61696,
+      "src": "fontawesome",
+      "from": 61696
+    },
+    {
+      "search": [
+        "angle",
+        "right"
+      ],
+      "code": 61697,
+      "uid": "fdfbd1fcbd4cb229716a810801a5f207",
+      "css": "angle-double-right",
+      "orig_css": "angle-double-right",
+      "orig_code": 61697,
+      "src": "fontawesome",
+      "from": 61697
+    },
+    {
+      "search": [
+        "facebook",
+        "social",
+        "logo"
+      ],
+      "code": 62222,
+      "uid": "47bd87a650e95b97f947d275ed968efe",
+      "css": "facebook-squared",
+      "orig_css": "facebook-squared",
+      "orig_code": 62222,
+      "src": "entypo",
+      "from": 62222
+    },
+    {
+      "search": [
+        "doc",
+        "text",
+        "article"
+      ],
+      "code": 128196,
+      "uid": "1189604bf305b6b03a74685ce60e6632",
+      "css": "doc-text",
+      "orig_css": "doc-text",
+      "orig_code": 128196,
+      "src": "entypo",
+      "from": 128196
+    },
+    {
+      "search": [
+        "phone",
+        "telephone",
+        "call"
+      ],
+      "code": 128222,
+      "from": 128222,
+      "uid": "9f7e588c66cfd6891f6f507cf6f6596b",
+      "css": "phone",
+      "orig_css": "phone",
+      "orig_code": 128222,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "search",
+        "find"
+      ],
+      "code": 128269,
+      "from": 128269,
+      "uid": "9dd9e835aebe1060ba7190ad2b2ed951",
+      "css": "search",
+      "orig_css": "search",
+      "orig_code": 128269,
+      "src": "fontawesome"
+    },
+    {
+      "search": [
+        "clock",
+        "time"
+      ],
+      "code": 128340,
+      "uid": "8663320a860b00f26e94d3d15c9ba99a",
+      "css": "clock",
+      "orig_css": "clock",
+      "orig_code": 128340,
+      "src": "entypo",
+      "from": 128340
+    }
+  ]
+}
