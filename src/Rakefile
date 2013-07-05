@@ -74,6 +74,26 @@ task :replace_paths do
   puts 'Replaced paths'.magenta
 end
 
+desc "Build and export project to a folder"
+task :export, :path do |t, args|
+  Rake::Task["build"].invoke
+
+  export_folder_path = "../#{args[:path].split('/').last}"
+
+  FileUtils.mkdir export_folder_path
+
+  Dir["../*.html"].each do |file|
+    filename = file.split('/').last
+    FileUtils.copy_file file, "#{export_folder_path}/#{filename}"
+  end
+
+  cp_r "../resources", export_folder_path
+
+  cp_r export_folder_path, args[:path]
+
+  FileUtils.rm_r export_folder_path
+end
+
 namespace :remove do
   desc "Remove console.log statements from app.js"
   task "console.log" do
