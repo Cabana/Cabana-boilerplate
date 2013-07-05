@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+
+gem 'bundler'
+gem 'rake'
+gem 'colorize'
+gem 'closure-compiler'
+gem 'compass'
+gem 'guard'
+gem 'guard-shell'
+gem 'guard-compass'
+gem 'guard-livereload'
+gem 'terminal-notifier'
