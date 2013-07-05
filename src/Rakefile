@@ -31,7 +31,8 @@ namespace :build do
 
   desc 'Build css'
   task css: ['../resources/css', 'scss_utils'] do
-    system "compass compile --sass-dir sass --css-dir ../resources/css --out-style compressed --force"
+    # system "compass compile --sass-dir sass --css-dir ../resources/css --out-style compressed --force"
+    system "compass compile"
     replace_paths
   end
 
