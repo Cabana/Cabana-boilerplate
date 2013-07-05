@@ -2,5 +2,5 @@
   // "resources/css/app.css": {
   //   "replace": "background:red",
   //   "with": "background:foobar"
-  // },
+  // }
 }
