@@ -87,8 +87,7 @@ def paths_to_js_files
 end
 
 def file_size_in_kb file_path
-  size = File.size(file_path) / 1024.0
-  size.round
+  File.size(file_path)./(1024.0).round
 end
 
 def font_paths
