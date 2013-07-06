@@ -68,6 +68,7 @@ task :replace_paths do
   end
 end
 
+desc "Remove console.log statements from app.js"
 task :remove_console_logs do
   app_js_path = '../resources/js/app.js'
   contents = File.read app_js_path if File.exists? app_js_path
