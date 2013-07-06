@@ -46,17 +46,13 @@ namespace :build do
   desc 'Copy images'
   task img: ['../resources/img'] do
     remove_files_in '../resources/img'
-    img_paths.each do |img_path|
-      FileUtils.copy_file img_path, "../resources/#{img_path}"
-    end
+    img_paths.each {|ip| FileUtils.copy_file ip, "../resources/#{ip}" }
   end
 
   desc 'Copy fonts'
   task fonts: ['../resources/fonts'] do
     remove_files_in '../resources/fonts'
-    font_paths.each do |font_path|
-      FileUtils.copy_file font_path, "../resources/#{font_path}"
-    end
+    font_paths.each {|fp| FileUtils.copy_file fp, "../resources/#{fp}" }
   end
 end
 
@@ -97,7 +93,5 @@ def img_paths
 end
 
 def remove_files_in folder_path
-  Dir["#{folder_path}/**/*"].each do |file|
-    FileUtils.rm_rf file
-  end
+  Dir["#{folder_path}/**/*"].each {|file| FileUtils.rm_rf file }
 end
