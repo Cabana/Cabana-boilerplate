@@ -27,7 +27,6 @@ namespace :build do
   desc 'Build css'
   task css: ['../resources/css'] do
     system "compass compile"
-    # replace_paths
   end
 
   desc 'Minify and concatenate js'
@@ -41,7 +40,6 @@ namespace :build do
     File.open "../resources/js/app.js", "w" do |file|
       file.write contents
     end
-    # replace_paths
     puts "overwrite".yellow + " ../resources/js/app.js"
   end
 
