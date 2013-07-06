@@ -89,11 +89,7 @@ def file_size_in_kb file_path
 end
 
 def font_paths
-  fonts = []
-  Dir["fonts/**/*"].each do |path|
-    fonts << path unless path.include?("config.json")
-  end
-  fonts
+  Dir["fonts/**/*"].map {|path| path unless path.include?("config.json") }.compact
 end
 
 def img_paths
