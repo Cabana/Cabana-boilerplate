@@ -27,7 +27,7 @@ namespace :build do
   desc 'Build css'
   task css: ['../resources/css'] do
     system "compass compile"
-    replace_paths
+    # replace_paths
   end
 
   desc 'Minify and concatenate js'
@@ -41,7 +41,7 @@ namespace :build do
     File.open "../resources/js/app.js", "w" do |file|
       file.write contents
     end
-    replace_paths
+    # replace_paths
     puts "overwrite".yellow + " ../resources/js/app.js"
   end
 
@@ -62,7 +62,7 @@ namespace :build do
   end
 end
 
-def replace_paths
+task :replace_paths do
   JSON.parse(File.read 'paths.json').each do |key, value|
     if File.exists? "../#{key}"
       contents = File.read "../#{key}"
@@ -72,6 +72,10 @@ def replace_paths
       end
     end
   end
+end
+
+Kernel.trap("EXIT") do
+  Rake::Task[:replace_paths].execute
 end
 
 def js_components
