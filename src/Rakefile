@@ -56,27 +56,17 @@ namespace :build do
   end
 end
 
+desc "Replace paths as specified in paths.json"
 task :replace_paths do
   JSON.parse(File.read 'paths.json').each do |key, value|
-    if File.exists? "../#{key}"
-      contents = File.read "../#{key}"
-      contents.gsub! value["replace"], value["with"]
-      File.open "../#{key}", "w" do |file|
-        file.write contents
-      end
-    end
+    replace value["with"], with: value["replace"], in_file: "../#{key}"
   end
 end
 
 namespace :remove do
   desc "Remove console.log statements from app.js"
   task "console.log" do
-    app_js_path = '../resources/js/app.js'
-    contents = File.read app_js_path if File.exists? app_js_path
-    contents.gsub!(/console\.log\(.+?\);?/, '')
-    File.open app_js_path, "w" do |file|
-      file.write contents
-    end
+    replace /console\.log\(.+?\);?/, with: '', in_file: '../resources/js/app.js'
   end
 end
 
