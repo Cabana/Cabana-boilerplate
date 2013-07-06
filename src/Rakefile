@@ -68,6 +68,11 @@ namespace :remove do
   task "console.log" do
     replace /console\.log\(.+?\);?/, with: '', in_file: '../resources/js/app.js'
   end
+
+  desc "Remove alert statements from app.js"
+  task "alert" do
+    replace /alert\(.+?\);?/, with: '', in_file: '../resources/js/app.js'
+  end
 end
 
 Kernel.trap("EXIT") do
