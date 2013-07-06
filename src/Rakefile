@@ -24,6 +24,16 @@ task build: [
 end
 
 namespace :build do
+  desc "Build all resources and make them ready for deployment"
+  task for_deploy: [
+    'build',
+    'replace_paths',
+    'remove:console.log',
+    'remove:alert'
+  ] do
+    puts 'Resources are now ready for deployment'.magenta
+  end
+
   desc 'Build css'
   task css: ['../resources/css'] do
     system "compass compile"
