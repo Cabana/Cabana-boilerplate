@@ -68,6 +68,15 @@ task :replace_paths do
   end
 end
 
+task :remove_console_logs do
+  app_js_path = '../resources/js/app.js'
+  contents = File.read app_js_path if File.exists? app_js_path
+  contents.gsub!(/console\.log\(.+?\);?/, '')
+  File.open app_js_path, "w" do |file|
+    file.write contents
+  end
+end
+
 Kernel.trap("EXIT") do
   Rake::Task[:replace_paths].execute
 end
