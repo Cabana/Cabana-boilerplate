@@ -68,13 +68,15 @@ task :replace_paths do
   end
 end
 
-desc "Remove console.log statements from app.js"
-task :remove_console_logs do
-  app_js_path = '../resources/js/app.js'
-  contents = File.read app_js_path if File.exists? app_js_path
-  contents.gsub!(/console\.log\(.+?\);?/, '')
-  File.open app_js_path, "w" do |file|
-    file.write contents
+namespace :remove do
+  desc "Remove console.log statements from app.js"
+  task "console.log" do
+    app_js_path = '../resources/js/app.js'
+    contents = File.read app_js_path if File.exists? app_js_path
+    contents.gsub!(/console\.log\(.+?\);?/, '')
+    File.open app_js_path, "w" do |file|
+      file.write contents
+    end
   end
 end
 
