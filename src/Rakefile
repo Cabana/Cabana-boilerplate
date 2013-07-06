@@ -84,6 +84,17 @@ Kernel.trap("EXIT") do
   Rake::Task[:replace_paths].execute
 end
 
+def replace pattern, hash = {}
+  file_path = hash[:in_file]
+  with = hash[:with]
+
+  contents = File.read file_path if File.exists? file_path
+  contents.gsub!(pattern, with)
+  File.open file_path, "w" do |file|
+    file.write contents
+  end
+end
+
 def js_components
   JSON.parse File.read File.join 'js', 'components.json'
 end
