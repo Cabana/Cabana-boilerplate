@@ -13,7 +13,6 @@ directory '../resources/fonts'
 
 desc 'Build all resources'
 task build: [
-  'build:scss_utils',
   'build:css',
   'build:js',
   'build:fonts',
@@ -25,13 +24,8 @@ task build: [
 end
 
 namespace :build do
-  # desc 'Build scss utilities'
-  task :scss_utils do
-  end
-
   desc 'Build css'
-  task css: ['../resources/css', 'scss_utils'] do
-    # system "compass compile --sass-dir sass --css-dir ../resources/css --out-style compressed --force"
+  task css: ['../resources/css'] do
     system "compass compile"
     replace_paths
   end
