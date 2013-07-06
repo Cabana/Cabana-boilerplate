@@ -83,11 +83,7 @@ def js_components
 end
 
 def paths_to_js_files
-  js_files = []
-  js_components.each do |name, path|
-    js_files << File.join('js', path)
-  end
-  js_files
+  js_components.map {|name, path| File.join('js', path) }
 end
 
 def file_size_in_kb file_path
