@@ -54,10 +54,46 @@ If you're using LiveReload, guard will also reload you browser.
 To start guard run `guard` from the root of the project.
 
 ### JavaScript
-...
+To build the JavaScript run `rake build:js`.
+
+This will concatenate and minify your required JavaScript files.
+
+Since the order in which files are concatenated is very important in JavaScript we have a file called components.json inside the js folder. This file specifies which files should be concatenated together and in what order.
+
+The components.json file should look something like this:
+
+```javascript
+{
+  "name of component": "path",
+  "name of another component": "path to other component"
+}
+```
+
+The name of the component is not significant. The path must be relative to the js folder.
+
+The build script will then read this file and make sure your files are concatenated in this order.
 
 ### CSS
-...
+The build the CSS run `rake build:css`.
+
+This will tell compass to compile the files inside the sass folder. The settings for compass can be found in config.rb
+
+Any file who's name starts with an underscore is a partial and therefore wont be compiled into a CSS file.
 
 ### Replacing paths
-...
+Sometimes its nessecary to edit the paths to some asset after a build. This could be if the production setup uses a super deep folder structure that you don't wish to mirror while developing.
+
+To fix that edit the paths.json file.
+
+This file should look something like this
+
+```javascript
+{
+  "path/to/file": {
+   "replace": "foo",
+   "with": "bar"
+  }
+}
+```
+
+In this example we should replace every instance of `foo` with `bar` inside the specified file.
