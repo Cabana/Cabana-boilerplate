@@ -97,3 +97,8 @@ This file should look something like this
 ```
 
 In this example we should replace every instance of `foo` with `bar` inside the specified file.
+
+There is a rake task for doing this (its `rake replace_paths`) but you shouldn't need to explicitly call it. It will be called after having built JavaScript or CSS.
+
+### Getting ready for deployment
+If you're getting ready to move to production it might be a good idea to build the resources using `rake build:for_deploy`. This will not only build the resources but it will also remove things like `console.log()` and `alert()` statements from the JavaScript, which are normally only required during development.
