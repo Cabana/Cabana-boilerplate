@@ -42,6 +42,7 @@ Here is list of what the build script will do
 - Concatenate and minify the JavaScript and place the results in resources/js/app.js.
 - Compile the SCSS into resources/css/app.css.
 - Replace paths.
+- Remove console.logs and alerts.
 
 ### Guard
 "[Guard](https://github.com/guard/guard) is a command line tool to easily handle events on file system modifications."
