@@ -6,12 +6,21 @@ require 'fileutils'
 require 'httparty'
 require_relative 'config'
 
-task default: :build
+@css_build_dir        ||= '../resources/css'
+@js_build_dir         ||= '../resources/js'
+@img_build_dir        ||= '../resources/img'
+@fonts_build_dir      ||= '../resources/fonts'
+@export_dir           ||= '../export'
+@js_components        ||= []
+@js_compression_level ||= 'SIMPLE_OPTIMIZATIONS'
+@replacements         ||= {}
 
 directory @css_build_dir
 directory @js_build_dir
 directory @img_build_dir
 directory @fonts_build_dir
+
+task default: :build
 
 desc 'Build all resources'
 task build: [
