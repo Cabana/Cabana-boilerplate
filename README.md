@@ -64,8 +64,8 @@ The components.json file should look something like this:
 
 ```javascript
 {
-  "name of component": "path",
-  "name of another component": "path to other component"
+  "jquery": "jquery.js",
+  "init": "init.js"
 }
 ```
 
@@ -102,3 +102,6 @@ There is a rake task for doing this (its `rake replace_paths`) but you shouldn't
 
 ### Getting ready for deployment
 If you're getting ready to move to production it might be a good idea to build the resources using `rake build:for_deploy`. This will not only build the resources but it will also remove things like `console.log()` and `alert()` statements from the JavaScript, which are normally only required during development.
+
+### Exporting
+...
