@@ -51,8 +51,8 @@ namespace :build do
     File.open "../resources/js/app.js", "w" do |file|
       file.write contents
     end
-    Rake::Task[:replace_paths].execute
     puts "overwrite".yellow + " ../resources/js/app.js"
+    Rake::Task[:replace_paths].execute
   end
 
   desc 'Copy images'
