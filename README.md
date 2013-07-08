@@ -89,10 +89,10 @@ This file should look something like this
 
 ```javascript
 {
-  "path/to/file": {
-   "replace": "foo",
-   "with": "bar"
-  }
+  "../../resources/css/www_kongress_dk/app.css": [
+    { "replace": "../img", "with": "../../img/www_kongress_dk" },
+    { "replace": "../fonts", "with": "../../fonts/www_kongress_dk" }
+  ]
 }
 ```
 

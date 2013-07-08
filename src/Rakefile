@@ -72,8 +72,10 @@ end
 
 desc "Replace paths as specified in paths.json"
 task :replace_paths do
-  JSON.parse(File.read 'paths.json').each do |key, value|
-    replace value["replace"], with: value["with"], in_file: key
+  JSON.parse(File.read 'paths.json').each do |path, replacements|
+    replacements.each do |replacement|
+      replace replacement["replace"], with: replacement["with"], in_file: path
+    end
   end
   puts 'Replaced paths'.yellow
 end
