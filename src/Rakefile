@@ -78,15 +78,15 @@ task :replace_paths do
 end
 
 desc "Build and export project to path"
-task :export, :path do |t, args|
+task :export do |t|
   # build the resources folder
   Rake::Task["build"].invoke
 
   # get path to export folder
-  export_folder_path = "../#{args[:path].split('/').last}"
+  export_folder_path = "../#{@export_dir.split('/').last}"
 
   # remove the export folder and destination folder if they exist
-  FileUtils.rm_r args[:path] if File.exists?(args[:path])
+  FileUtils.rm_r @export_dir if File.exists?(@export_dir)
   FileUtils.rm_r export_folder_path if File.exists?(export_folder_path)
 
   # make the export folder
@@ -107,7 +107,7 @@ task :export, :path do |t, args|
   FileUtils.cp_r "../resources", "#{export_folder_path}/resources"
 
   # copy the export folder to the specified path
-  cp_r export_folder_path, args[:path]
+  cp_r export_folder_path, @export_dir
 
   # remove the export folder from the project
   FileUtils.rm_r export_folder_path
