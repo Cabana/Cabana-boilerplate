@@ -113,7 +113,7 @@ def compile_php_files_into folder_path
   project_path = Dir.pwd.gsub('/src', '')
   current_project = project_path.split('/').last
 
-  cp_r project_path, '/Volumes/inetpub-1/Cabana/Kunder/wwwroot/frontend'
+  cp_r project_path, '/Volumes/inetpub/Cabana/Kunder/wwwroot/frontend'
 
   Dir['../*.php'].each do |php_file|
     php_file.gsub! '../', ''
@@ -122,7 +122,7 @@ def compile_php_files_into folder_path
     file.close
   end
 
-  FileUtils.rm_r "/Volumes/inetpub-1/Cabana/Kunder/wwwroot/frontend/#{current_project}"
+  FileUtils.rm_r "/Volumes/inetpub/Cabana/Kunder/wwwroot/frontend/#{current_project}"
 end
 
 # TODO: Test this on Windows
