@@ -118,13 +118,13 @@ end
 namespace :remove do
   desc "Remove console.log statements from app.js"
   task "console.log" do
-    replace /console\.log\(.+?\);?/, with: '', in_file: '../resources/js/app.js'
+    replace /console\.log\(.+?\);?/, with: '', in_file: "#{js_build_dir}/app.js"
     puts 'Removed console.logs'.magenta
   end
 
   desc "Remove alert statements from app.js"
   task "alert" do
-    replace /alert\(.+?\);?/, with: '', in_file: '../resources/js/app.js'
+    replace /alert\(.+?\);?/, with: '', in_file: "#{js_build_dir}/app.js"
     puts 'Removed alerts'.magenta
   end
 end
