@@ -28,7 +28,6 @@ namespace :build do
   desc "Build all resources and make them ready for deployment"
   task for_deploy: [
     'build',
-    'replace_paths',
     'remove:console.log',
     'remove:alert'
   ] do
@@ -38,6 +37,7 @@ namespace :build do
   desc 'Build css'
   task css: ['../resources/css'] do
     system "compass compile"
+    Rake::Task[:replace_paths].execute
   end
 
   desc 'Minify and concatenate js'
@@ -51,6 +51,7 @@ namespace :build do
     File.open "../resources/js/app.js", "w" do |file|
       file.write contents
     end
+    Rake::Task[:replace_paths].execute
     puts "overwrite".yellow + " ../resources/js/app.js"
   end
 
@@ -72,7 +73,7 @@ task :replace_paths do
   JSON.parse(File.read 'paths.json').each do |key, value|
     replace value["with"], with: value["replace"], in_file: "../#{key}"
   end
-  puts 'Replaced paths'.magenta
+  puts 'Replaced paths'.yellow
 end
 
 # TODO: Test this on Windows
@@ -169,10 +170,6 @@ namespace :remove do
     replace /alert\(.+?\);?/, with: '', in_file: '../resources/js/app.js'
     puts 'Removed alerts'.magenta
   end
-end
-
-Kernel.trap("EXIT") do
-  Rake::Task[:replace_paths].execute
 end
 
 def replace pattern, hash = {}
