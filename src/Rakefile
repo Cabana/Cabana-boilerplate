@@ -42,12 +42,7 @@ namespace :build do
 
   desc 'Minify and concatenate js'
   task js: [@js_build_dir] do
-    compilation_levels = {
-      simple: 'SIMPLE_OPTIMIZATIONS',
-      advanced: 'ADVANCED_OPTIMIZATIONS',
-      whitespace: 'WHITESPACE_ONLY'
-    }
-    contents = Closure::Compiler.new(compilation_level: compilation_levels[:simple]).compile_files @js_components
+    contents = Closure::Compiler.new(compilation_level: @js_compression_level).compile_files @js_components
     File.open "#{@js_build_dir}/app.js", "w" do |file|
       file.write contents
     end
@@ -73,7 +68,6 @@ task :replace_paths do
       replace replacement[:replace], with: replacement[:with], in_file: path
     end
   end
-
   puts 'Replaced paths'.yellow
 end
 

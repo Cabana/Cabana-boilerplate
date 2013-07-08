@@ -27,12 +27,9 @@
   "js/init.js"
 ]
 
-@replacements = {
-  # '../resources/css/app.css' => [
-  #   { replace: "background:red", with: "background:foo" },
-  #   { replace: "font-color:blue", with: "font-color:bar" }
-  # ]
-}
+@js_compression_level = 'SIMPLE_OPTIMIZATIONS'
+
+@replacements = {}
 
 # Compass config
 http_path = "/"
