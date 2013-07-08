@@ -1,17 +1,41 @@
-# Require any additional compass plugins here.
+# Build script config
+@css_build_dir   = '../resources/css'
+@js_build_dir    = '../resources/js'
+@img_build_dir   = '../resources/img'
+@fonts_build_dir = '../resources/fonts'
 
-# Set this to the root of your project when deployed:
+@js_components = [
+  # "js/modernizr.js",
+  # "js/jquery.js",
+  # "js/foundation/foundation.js",
+  # "js/foundation/foundation.alerts.js",
+  # "js/foundation/foundation.clearing.js",
+  # "js/foundation/foundation.cookie.js",
+  # "js/foundation/foundation.dropdown.js",
+  # "js/foundation/foundation.forms.js",
+  # "js/foundation/foundation.interchange.js",
+  # "js/foundation/foundation.joyride.js",
+  # "js/foundation/foundation.magellan.js",
+  # "js/foundation/foundation.orbit.js",
+  # "js/foundation/foundation.placeholder.js",
+  # "js/foundation/foundation.reveal.js",
+  # "js/foundation/foundation.section.js",
+  # "js/foundation/foundation.tooltips.js",
+  # "js/foundation/foundation.topbar.js",
+  "js/init.js"
+]
+
+@replacements = {
+  # '../resources/css/app.css' => [
+  #   { replace: "background:red", with: "background:foo" },
+  #   { replace: "font-color:blue", with: "font-color:bar" }
+  # ]
+}
+
+# Compass config
 http_path = "/"
-# css_dir is set in Rakefile
 sass_dir = "sass"
 images_dir = "img"
 javascripts_dir = "js"
-
-# You can select your preferred output style here (can be overridden via the command line):
 output_style = :compressed
-
-# To enable relative paths to assets via compass helper functions. Uncomment:
-# relative_assets = true
-
-# To disable debugging comments that display the original location of your selectors. Uncomment:
 line_comments = false

@@ -4,18 +4,14 @@ require 'colorize'
 require 'closure-compiler'
 require 'fileutils'
 require 'httparty'
+require_relative 'config'
 
 task default: :build
 
-css_build_dir   = '../resources/css'
-js_build_dir    = '../resources/js'
-img_build_dir   = '../resources/img'
-fonts_build_dir = '../resources/fonts'
-
-directory css_build_dir
-directory js_build_dir
-directory img_build_dir
-directory fonts_build_dir
+directory @css_build_dir
+directory @js_build_dir
+directory @img_build_dir
+directory @fonts_build_dir
 
 desc 'Build all resources'
 task build: [
@@ -25,8 +21,8 @@ task build: [
   'build:img'
 ] do
   puts 'Resources have been built!'.magenta
-  puts "Total size of app.css is now #{file_size_in_kb("#{css_build_dir}/app.css")} kb"
-  puts "Total size of app.js is now #{file_size_in_kb("#{js_build_dir}/app.js")} kb"
+  puts "Total size of app.css is now #{file_size_in_kb("#{@css_build_dir}/app.css")} kb"
+  puts "Total size of app.js is now #{file_size_in_kb("#{@js_build_dir}/app.js")} kb"
 end
 
 namespace :build do
@@ -40,43 +36,44 @@ namespace :build do
   end
 
   desc 'Build css'
-  task css: [css_build_dir] do
-    system "compass compile --css-dir #{css_build_dir} --force"
+  task css: [@css_build_dir] do
+    system "compass compile --css-dir #{@css_build_dir} --force"
   end
 
   desc 'Minify and concatenate js'
-  task js: [js_build_dir] do
+  task js: [@js_build_dir] do
     compilation_levels = {
       simple: 'SIMPLE_OPTIMIZATIONS',
       advanced: 'ADVANCED_OPTIMIZATIONS',
       whitespace: 'WHITESPACE_ONLY'
     }
-    contents = Closure::Compiler.new(compilation_level: compilation_levels[:simple]).compile_files paths_to_js_files
-    File.open "#{js_build_dir}/app.js", "w" do |file|
+    contents = Closure::Compiler.new(compilation_level: compilation_levels[:simple]).compile_files @js_components
+    File.open "#{@js_build_dir}/app.js", "w" do |file|
       file.write contents
     end
-    puts "overwrite".yellow + "#{js_build_dir}/app.js"
+    puts "overwrite".yellow + " #{@js_build_dir}/app.js"
   end
 
   desc 'Copy images'
-  task img: [img_build_dir] do
-    img_paths.each {|ip| FileUtils.copy_file ip, "#{img_build_dir}/#{ip.gsub('img/', '')}" }
+  task img: [@img_build_dir] do
+    img_paths.each {|ip| FileUtils.copy_file ip, "#{@img_build_dir}/#{ip.gsub('img/', '')}" }
   end
 
   desc 'Copy fonts'
-  task fonts: [fonts_build_dir] do
-    remove_files_in fonts_build_dir
-    font_paths.each {|fp| FileUtils.copy_file fp, "#{fonts_build_dir}/#{fp.gsub('fonts/', '')}" }
+  task fonts: [@fonts_build_dir] do
+    remove_files_in @fonts_build_dir
+    font_paths.each {|fp| FileUtils.copy_file fp, "#{@fonts_build_dir}/#{fp.gsub('fonts/', '')}" }
   end
 end
 
 desc "Replace paths as specified in paths.json"
 task :replace_paths do
-  JSON.parse(File.read 'paths.json').each do |path, replacements|
+  @replacements.each do |path, replacements|
     replacements.each do |replacement|
-      replace replacement["replace"], with: replacement["with"], in_file: path
+      replace replacement[:replace], with: replacement[:with], in_file: path
     end
   end
+
   puts 'Replaced paths'.yellow
 end
 
@@ -120,13 +117,13 @@ end
 namespace :remove do
   desc "Remove console.log statements from app.js"
   task "console.log" do
-    replace /console\.log\(.+?\);?/, with: '', in_file: "#{js_build_dir}/app.js"
+    replace /console\.log\(.+?\);?/, with: '', in_file: "#{@js_build_dir}/app.js"
     puts 'Removed console.logs'.magenta
   end
 
   desc "Remove alert statements from app.js"
   task "alert" do
-    replace /alert\(.+?\);?/, with: '', in_file: "#{js_build_dir}/app.js"
+    replace /alert\(.+?\);?/, with: '', in_file: "#{@js_build_dir}/app.js"
     puts 'Removed alerts'.magenta
   end
 end
@@ -160,14 +157,6 @@ def compile_php_files_into folder_path
   end
 
   FileUtils.rm_r "/Volumes/inetpub/Cabana/Kunder/wwwroot/frontend/#{current_project}"
-end
-
-def js_components
-  JSON.parse File.read File.join 'js', 'components.json'
-end
-
-def paths_to_js_files
-  js_components.map {|name, path| File.join('js', path) }
 end
 
 def file_size_in_kb file_path
