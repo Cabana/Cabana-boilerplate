@@ -131,6 +131,10 @@ task :export, :path do |t, args|
   # build the resources folder
   Rake::Task["build"].invoke
 
+  if File.exists?(args[:path])
+    FileUtils.rm_r args[:path]
+  end
+
   # get path to export folder
   export_folder_path = "../#{args[:path].split('/').last}"
 
@@ -151,11 +155,16 @@ task :export, :path do |t, args|
   # copy the resources folder into the export folder
   cp_r "../resources", export_folder_path
 
+
   # copy the export folder to the specified path
   cp_r export_folder_path, args[:path]
 
   # remove the export folder from the project
   FileUtils.rm_r export_folder_path
+
+  # the export folder gets duplicated for some reason
+  # just remove it, easy fix
+  # FileUtils.rm_r "#{args[:path]}/#{export_folder_path.gsub('../', '')}"
 end
 
 namespace :remove do
@@ -187,7 +196,7 @@ def compile_php_files_into folder_path
   project_path = Dir.pwd.gsub('/src', '')
   current_project = project_path.split('/').last
 
-  cp_r project_path, '/Volumes/inetpub-1/Cabana/Kunder/wwwroot/frontend'
+  cp_r project_path, '/Volumes/inetpub/Cabana/Kunder/wwwroot/frontend'
 
   Dir['../*.php'].each do |php_file|
     php_file.gsub! '../', ''
@@ -196,7 +205,7 @@ def compile_php_files_into folder_path
     file.close
   end
 
-  FileUtils.rm_r "/Volumes/inetpub-1/Cabana/Kunder/wwwroot/frontend/#{current_project}"
+  FileUtils.rm_r "/Volumes/inetpub/Cabana/Kunder/wwwroot/frontend/#{current_project}"
 end
 
 def js_components
