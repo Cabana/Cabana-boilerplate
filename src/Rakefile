@@ -77,7 +77,6 @@ task :replace_paths do
   puts 'Replaced paths'.yellow
 end
 
-# TODO: Test this on Windows
 desc "Build and export project to path"
 task :export, :path do |t, args|
   # build the resources folder
