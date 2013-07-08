@@ -53,25 +53,32 @@ If you're using LiveReload, guard will also reload you browser.
 
 To start guard run `guard` from the root of the project.
 
+### The config file
+The build script can be configured in the config.rb file. Descriptions for the individual settings can be found in the sections below.
+
 ### JavaScript
 To build the JavaScript run `rake build:js`.
 
 This will concatenate and minify your required JavaScript files.
 
-Since the order in which files are concatenated is very important in JavaScript we have a file called components.json inside the js folder. This file specifies which files should be concatenated together and in what order.
+Since the order in which JavaScript file are concatenated is important you will send a setting for this in the config.rb file. The setting is called `@js_components` and it is an array filepaths to the JavaScript files you wanna use.
 
-The components.json file should look something like this:
+`@js_components` should could look something like this.
 
-```javascript
-{
-  "jquery": "jquery.js",
-  "init": "init.js"
-}
+```ruby
+@js_components = [
+  "js/modernizr.js",
+  "js/jquery.js",
+  "js/foundation/foundation.js",
+  "js/foundation/foundation.clearing.js",
+  "js/foundation/foundation.interchange.js",
+  "js/init.js"
+]
 ```
 
-The name of the component is not significant. The path must be relative to the js folder.
+The path specified is relative to the src folder.
 
-The build script will then read this file and make sure your files are concatenated in this order.
+The build script will use this and make sure your files are concatenated in this order.
 
 ### CSS
 The build the CSS run `rake build:css`.
@@ -88,15 +95,13 @@ To fix that edit the paths.json file.
 This file should look something like this
 
 ```javascript
-{
-  "../../resources/css/www_kongress_dk/app.css": [
-    { "replace": "../img", "with": "../../img/www_kongress_dk" },
-    { "replace": "../fonts", "with": "../../fonts/www_kongress_dk" }
+@replacements = {
+  "../../resources/css/www_kongress_dk/app.css" => [
+    { replace: "../img", with: "../../img/www_kongress_dk" },
+    { replace: "../fonts", with: "../../fonts/www_kongress_dk" }
   ]
 }
 ```
-
-In this example we should replace every instance of `foo` with `bar` inside the specified file.
 
 There is a rake task for doing this (its `rake replace_paths`) but you shouldn't need to explicitly call it. It will be called after having built JavaScript or CSS.
 
