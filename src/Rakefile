@@ -68,20 +68,22 @@ namespace :build do
     img_paths.each {|ip| FileUtils.copy_file ip, "#{@img_build_dir}/#{ip.gsub('img/', '')}" }
   end
 
-  desc 'Compress pngs'
-  task :compress_pngs do
+  desc 'Copy fonts'
+  task fonts: [@fonts_build_dir] do
+    remove_files_in @fonts_build_dir
+    font_paths.each {|fp| FileUtils.copy_file fp, "#{@fonts_build_dir}/#{fp.gsub('fonts/', '')}" }
+  end
+end
+
+namespace :compress do
+  desc 'Compress pngs in src/img'
+  task :png do
     before_file_size = full_size_of_files_in "img"
     system "smusher --quiet img"
     after_file_size = full_size_of_files_in "img"
     difference = ( before_file_size - after_file_size ) / before_file_size.to_f * 100
     puts 'Compressed pngs'.yellow
     puts "You just saved #{difference.round}% on png sizes"
-  end
-
-  desc 'Copy fonts'
-  task fonts: [@fonts_build_dir] do
-    remove_files_in @fonts_build_dir
-    font_paths.each {|fp| FileUtils.copy_file fp, "#{@fonts_build_dir}/#{fp.gsub('fonts/', '')}" }
   end
 end
 
