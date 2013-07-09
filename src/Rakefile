@@ -38,6 +38,7 @@ namespace :build do
   desc "Build all resources and make them ready for deployment"
   task for_deploy: [
     'build',
+    'replace_paths',
     'remove:console.log'
   ] do
     puts 'Resources are now ready for deployment'.magenta
@@ -121,10 +122,6 @@ namespace :remove do
     replace /console\.log\(.+?\);?/, with: '', in_file: "#{@js_build_dir}/app.js"
     puts 'Removed console.logs'.magenta
   end
-end
-
-Kernel.trap("EXIT") do
-  Rake::Task[:replace_paths].execute
 end
 
 def replace pattern, hash = {}

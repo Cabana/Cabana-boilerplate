@@ -29,6 +29,7 @@
 
 @js_compression_level = 'SIMPLE_OPTIMIZATIONS'
 
+# only for build:for_deploy task
 @replacements = {}
 
 # Compass config
