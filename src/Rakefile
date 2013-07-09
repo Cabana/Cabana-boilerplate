@@ -42,6 +42,7 @@ end
 namespace :build do
   desc "Build all resources and make them ready for deployment"
   task for_deploy: [
+    'compress:png',
     'build',
     'replace_paths',
     'remove:console.log'
