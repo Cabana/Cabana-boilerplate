@@ -75,7 +75,7 @@ namespace :build do
     after_file_size = full_size_of_files_in "img"
     difference = ( before_file_size - after_file_size ) / before_file_size.to_f * 100
     puts 'Compressed pngs'.yellow
-    puts "You just saved #{difference.round}% on image sizes"
+    puts "You just saved #{difference.round}% on png sizes"
   end
 
   desc 'Copy fonts'
