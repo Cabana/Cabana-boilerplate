@@ -38,7 +38,7 @@ To list all of the build scripts tasks run `rake --tasks`. This will show you a 
 Here is list of what the build script will do
 
 - Copy images from src/img to resources/img.
-- Copy images from src/fonts to resources/fonts.
+- Copy fonts from src/fonts to resources/fonts.
 - Concatenate and minify the JavaScript and place the results in resources/js/app.js.
 - Compile the SCSS into resources/css/app.css.
 - Replace paths.
