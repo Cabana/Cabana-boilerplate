@@ -6,6 +6,7 @@ require 'fileutils'
 require 'httparty'
 require_relative 'config'
 
+@js_build_filename    ||= 'app.js'
 @css_build_dir        ||= '../resources/css'
 @js_build_dir         ||= '../resources/js'
 @img_build_dir        ||= '../resources/img'
@@ -30,8 +31,12 @@ task build: [
   'build:img'
 ] do
   puts 'Resources have been built!'.magenta
-  puts "Total size of app.css is now #{file_size_in_kb("#{@css_build_dir}/app.css")} kb"
-  puts "Total size of app.js is now #{file_size_in_kb("#{@js_build_dir}/app.js")} kb"
+  Dir[File.join(@css_build_dir, "*.css")].each do |css_file|
+    puts "#{css_file.split(File::SEPARATOR).last} is now #{file_size_in_kb(css_file)} kb"
+  end
+  Dir[File.join(@js_build_dir, "*.js")].each do |js_file|
+    puts "#{js_file.split(File::SEPARATOR).last} is now #{file_size_in_kb(js_file)} kb"
+  end
 end
 
 namespace :build do
@@ -52,10 +57,10 @@ namespace :build do
   desc 'Minify and concatenate js'
   task js: [@js_build_dir] do
     contents = Closure::Compiler.new(compilation_level: @js_compression_level).compile_files @js_components
-    File.open "#{@js_build_dir}/app.js", "w" do |file|
+    File.open "#{@js_build_dir}/#{@js_build_filename}", "w" do |file|
       file.write contents
     end
-    puts "overwrite".yellow + " #{@js_build_dir}/app.js"
+    puts "overwrite".yellow + " #{@js_build_dir}/#{@js_build_filename}"
   end
 
   desc 'Copy images'
@@ -113,9 +118,9 @@ task export: ['build:for_deploy'] do |t|
 end
 
 namespace :remove do
-  desc "Remove console.log statements from app.js"
+  desc "Remove console.log statements from #{@js_build_filename}"
   task "console.log" do
-    replace /console\.log\(.+?\);?/, with: '', in_file: "#{@js_build_dir}/app.js"
+    replace /console\.log\(.+?\);?/, with: '', in_file: "#{@js_build_dir}/#{@js_build_filename}"
     puts 'Removed console.logs'.magenta
   end
 end

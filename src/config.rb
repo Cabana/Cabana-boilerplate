@@ -1,4 +1,8 @@
 # Build script config
+
+# the name of the compiled css file is just the name of the .scss file
+@js_build_filename = 'app.js'
+
 @css_build_dir   = '../resources/css'
 @js_build_dir    = '../resources/js'
 @img_build_dir   = '../resources/img'
