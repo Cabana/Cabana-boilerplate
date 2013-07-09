@@ -4,7 +4,7 @@
 @img_build_dir   = '../resources/img'
 @fonts_build_dir = '../resources/fonts'
 
-@export_dir   = '/Users/davidpdrsn/Desktop/export'
+@export_dir   = '/Users/davidpedersen/Desktop/export'
 
 @js_components = [
   # "js/modernizr.js",
@@ -29,6 +29,7 @@
 
 @js_compression_level = 'SIMPLE_OPTIMIZATIONS'
 
+# only for build:for_deploy task
 @replacements = {}
 
 # Compass config
