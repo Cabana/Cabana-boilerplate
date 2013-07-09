@@ -19,6 +19,9 @@ If you're on a Mac you will need to install rvm. A good guide can be found [here
 
 You should be on Ruby version 2.0.0 or later when you're done.
 
+### 2.1. Ruby (Windows only)
+For guard to work, devkit needs to be installed. Download at: http://rubyinstaller.org/downloads/. Docs at: https://github.com/oneclick/rubyinstaller/wiki/development-kit
+
 ### 3. Clone down the boilerplate
 Then Git and Ruby have been setup you should be able to clone down the repo with `git clone https://github.com/Cabana/Cabana-boilerplate.git`.
 
