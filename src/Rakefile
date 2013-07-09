@@ -38,8 +38,7 @@ namespace :build do
   desc "Build all resources and make them ready for deployment"
   task for_deploy: [
     'build',
-    'remove:console.log',
-    'remove:alert'
+    'remove:console.log'
   ] do
     puts 'Resources are now ready for deployment'.magenta
   end
@@ -121,12 +120,6 @@ namespace :remove do
   task "console.log" do
     replace /console\.log\(.+?\);?/, with: '', in_file: "#{@js_build_dir}/app.js"
     puts 'Removed console.logs'.magenta
-  end
-
-  desc "Remove alert statements from app.js"
-  task "alert" do
-    replace /alert\(.+?\);?/, with: '', in_file: "#{@js_build_dir}/app.js"
-    puts 'Removed alerts'.magenta
   end
 end
 
