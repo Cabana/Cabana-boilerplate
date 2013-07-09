@@ -68,6 +68,16 @@ namespace :build do
     img_paths.each {|ip| FileUtils.copy_file ip, "#{@img_build_dir}/#{ip.gsub('img/', '')}" }
   end
 
+  desc 'Compress pngs'
+  task :compress_pngs do
+    before_file_size = full_size_of_files_in "img"
+    system "smusher --quiet img"
+    after_file_size = full_size_of_files_in "img"
+    difference = ( before_file_size - after_file_size ) / before_file_size.to_f * 100
+    puts 'Compressed pngs'.yellow
+    puts "You just saved #{difference.round}% on image sizes"
+  end
+
   desc 'Copy fonts'
   task fonts: [@fonts_build_dir] do
     remove_files_in @fonts_build_dir
@@ -183,4 +193,10 @@ end
 
 def folder_contains_php? folder
   true if Dir["#{folder}/*.php"].length > 0
+end
+
+def full_size_of_files_in path
+  full_size = Dir[File.join(path, "**", "*")].map do |f|
+    file_size_in_kb f
+  end.to_a.inject(0){|sum,item| sum + item}
 end
