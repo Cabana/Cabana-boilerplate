@@ -4,7 +4,7 @@
 @img_build_dir   = '../resources/img'
 @fonts_build_dir = '../resources/fonts'
 
-@export_dir   = '/Users/davidpdrsn/Desktop/export'
+@export_dir   = '/Users/davidpedersen/Desktop/export'
 
 @js_components = [
   # "js/modernizr.js",

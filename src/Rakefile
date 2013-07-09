@@ -81,12 +81,8 @@ task :replace_paths do
 end
 
 desc "Build and export project to path"
-task :export do |t|
-  # build the resources folder
-  Rake::Task["build"].invoke
-
-  # get path to export folder
-  export_folder_path = "../#{@export_dir.split('/').last}"
+task export: ['build:for_deploy'] do |t|
+  export_folder_path = File.join(File.expand_path("..", Dir.pwd), "export")
 
   # remove the export folder and destination folder if they exist
   FileUtils.rm_r @export_dir if File.exists?(@export_dir)
@@ -96,18 +92,18 @@ task :export do |t|
   FileUtils.mkdir export_folder_path
 
   # compile php files into html and place them in the export folder
-  if folder_contains_php? '../'
+  if folder_contains_php? File.expand_path('..')
     compile_php_files_into export_folder_path
   end
 
   # copy each html file into the export folder
-  Dir["../*.html"].each do |file|
-    filename = file.split('/').last
-    FileUtils.copy_file file, "#{export_folder_path}/#{filename}"
+  Dir[File.join(File.expand_path(".."), '*.html')].each do |file|
+    filename = File.basename(file)
+    FileUtils.copy_file file, File.join(export_folder_path, filename)
   end
 
   # copy the resources folder into the export folder
-  FileUtils.cp_r "../resources", "#{export_folder_path}/resources"
+  FileUtils.cp_r File.join(File.expand_path(".."), 'resources'), File.join(export_folder_path, 'resources')
 
   # copy the export folder to the specified path
   cp_r export_folder_path, @export_dir
@@ -136,19 +132,28 @@ def replace pattern, hash = {}
 end
 
 def compile_php_files_into folder_path
-  project_path = Dir.pwd.gsub('/src', '')
-  current_project = project_path.split('/').last
+  project_path = File.expand_path("..")
+  current_project = project_path.split(File::SEPARATOR).last
 
-  cp_r project_path, '/Volumes/inetpub/Cabana/Kunder/wwwroot/frontend'
+  if File.exists?('/Volumes/inetpub/Cabana/Kunder/wwwroot/frontend')
+    tmp_dir = '/Volumes/inetpub/Cabana/Kunder/wwwroot/frontend'
+  elsif File.exists?('I:\Cabana\Kunder\wwwroot\frontend')
+    tmp_dir = 'I:\Cabana\Kunder\wwwroot\frontend'
+  else
+    puts "Could not find the the frontend folder on the I drive".red
+    exit
+  end
 
-  Dir['../*.php'].each do |php_file|
-    php_file.gsub! '../', ''
-    file = File.new "#{folder_path}/#{php_file.gsub('php', 'html')}", "w"
+  cp_r project_path, tmp_dir
+
+  Dir[File.join(File.expand_path(".."), '*.php')].each do |php_file|
+    php_file = php_file.split(File::SEPARATOR).last
+    file = File.new(File.join(folder_path, php_file.gsub('php', 'html')), "w")
     file.puts HTTParty.get("http://kunder.cabana.dk/frontend/#{current_project}/#{php_file}").body
     file.close
   end
 
-  FileUtils.rm_r "/Volumes/inetpub/Cabana/Kunder/wwwroot/frontend/#{current_project}"
+  FileUtils.rm_r File.join(tmp_dir, current_project)
 end
 
 def file_size_in_kb file_path
