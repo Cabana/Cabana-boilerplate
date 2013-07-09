@@ -42,7 +42,7 @@ end
 namespace :build do
   desc "Build all resources and make them ready for deployment"
   task for_deploy: [
-    'compress:png',
+    'compress_img',
     'build',
     'replace_paths',
     'remove:console.log'
@@ -76,16 +76,14 @@ namespace :build do
   end
 end
 
-namespace :compress do
-  desc 'Compress pngs in src/img'
-  task :png do
-    before_file_size = full_size_of_files_in "img"
-    system "smusher --quiet img"
-    after_file_size = full_size_of_files_in "img"
-    difference = ( before_file_size - after_file_size ) / before_file_size.to_f * 100
-    puts 'Compressed pngs'.yellow
-    puts "You just saved #{difference.round}% on png sizes"
-  end
+desc 'Compress images in src/img'
+task :compress_img do
+  before_file_size = full_size_of_files_in "img"
+  system "smusher --quiet img"
+  after_file_size = full_size_of_files_in "img"
+  difference = ( before_file_size - after_file_size ) / before_file_size.to_f * 100
+  puts 'Compressed images'.yellow
+  puts "You just saved #{difference.round}% on image sizes"
 end
 
 desc "Replace paths"
