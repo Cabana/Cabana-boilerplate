@@ -53,10 +53,12 @@ GEM
       ffi (>= 0.5.0)
     rb-kqueue (0.2.0)
       ffi (>= 0.5.0)
+    rb-readline (0.5.0)
     sass (3.2.9)
     slop (3.4.5)
     terminal-notifier (1.4.2)
     thor (0.18.1)
+    wdm (0.1.0)
 
 PLATFORMS
   ruby
@@ -72,4 +74,6 @@ DEPENDENCIES
   guard-shell
   httparty
   rake
+  rb-readline
   terminal-notifier
+  wdm
