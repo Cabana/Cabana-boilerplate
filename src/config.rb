@@ -1,4 +1,4 @@
-# Build script config
+# Build script
 
 # the name of the compiled css file is just the name of the .scss file
 @js_build_filename = 'app.js'
@@ -35,6 +35,10 @@
 
 # only for build:for_deploy task
 @replacements = {}
+
+@run_on_exit = Proc.new do
+  # code to run when rake exits
+end
 
 # Compass config
 http_path = "/"

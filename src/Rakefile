@@ -184,3 +184,7 @@ end
 def folder_contains_php? folder
   true if Dir["#{folder}/*.php"].length > 0
 end
+
+Kernel.trap("EXIT") do
+  @run_on_exit.call
+end
