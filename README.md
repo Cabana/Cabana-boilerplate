@@ -112,4 +112,8 @@ There is a rake task for doing this (its `rake replace_paths`) but you shouldn't
 If you're getting ready to move to production it might be a good idea to build the resources using `rake build:for_deploy`. This will not only build the resources but it will also remove things like `console.log()` and `alert()` statements from the JavaScript, which are normally only required during development.
 
 ### Exporting
-...
+The build script makes it possible to export the project to another location. This would typically be somewhere on the I drive so its viewable via kunder.cabana.dk.
+
+To export the project edit `@export_dir` in config.rb and run `rake export`. That should do it!
+
+If you have any PHP files in your project the script will do some magic and compile them into html files.
