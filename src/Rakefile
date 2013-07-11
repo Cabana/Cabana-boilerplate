@@ -77,12 +77,18 @@ end
 
 desc "Replace paths"
 task :replace_paths do
-  @replacements.each do |path, replacements|
-    replacements.each do |replacement|
-      replace replacement[:replace], with: replacement[:with], in_file: path
+  if @replacements.size > 0
+    @replacements.each do |path, replacements|
+      number_of_matches = 0
+      replacements.each do |replacement|
+        replace replacement[:replace], with: replacement[:with], in_file: path
+        number_of_matches += File.open(path, 'r').read.scan(replacement[:with]).size
+      end
+      puts "Replaced #{replacements.size} path(s) in #{path.split(File::SEPARATOR).last}, #{number_of_matches} replacements total".yellow
     end
+  else
+    puts "No paths to replace".yellow
   end
-  puts 'Replaced paths'.yellow
 end
 
 desc "Build and export project to path"
