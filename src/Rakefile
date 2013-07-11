@@ -120,8 +120,14 @@ end
 namespace :remove do
   desc "Remove console.log statements from #{@js_build_filename}"
   task "console.log" do
-    replace /console\.log\(.+?\);?/, with: '', in_file: "#{@js_build_dir}/#{@js_build_filename}"
-    puts 'Removed console.logs'.magenta
+    file_path = File.join(@js_build_dir, @js_build_filename)
+    number_of_matches = File.open(file_path, 'r').read.scan(/console\.log\(.+?\);?/).size
+    if number_of_matches > 0
+      replace /console\.log\(.+?\);?/, with: '', in_file: file_path
+      puts "Removed #{number_of_matches} console.logs".yellow
+    else
+      puts "No console.logs to replace".yellow
+    end
   end
 end
 
