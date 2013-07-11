@@ -38,14 +38,17 @@ To list all of the build scripts tasks run `rake --tasks`. This will show you a 
 
 `rake build` is setup as the default task, which means that simply running `rake` is the same as running `rake build`.
 
-Here is list of what the build script will do
+Here is a list of the tasks and what they do
 
-- Copy images from src/img to resources/img.
-- Copy fonts from src/fonts to resources/fonts.
-- Concatenate and minify the JavaScript and place the results in resources/js/app.js.
-- Compile the SCSS into resources/css/app.css.
-- Replace paths.
-- Remove console.logs and alerts (optionally).
+- `build` will run `build:css`, `build:js` , `build:fonts` and `build:img`.
+- `build:css` will compile SCSS into CSS.
+- `build:fonts` will copy over the fonts.
+- `build:img` will copy over the images.
+- `build:js` will concatenate and minify javascript.
+- `build:for_deploy` will run `build`, `replace_paths`, and `remove:console.log`
+- `export` will run `build:for_deploy` and export the project to a folder.
+- `remove:console.log` will remove `console.log` statments from the compiled js file.
+- `replace_paths` will replace paths as specified in config.rb.
 
 ### Guard
 "[Guard](https://github.com/guard/guard) is a command line tool to easily handle events on file system modifications."
