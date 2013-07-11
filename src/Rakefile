@@ -77,12 +77,18 @@ end
 
 desc "Replace paths"
 task :replace_paths do
-  @replacements.each do |path, replacements|
-    replacements.each do |replacement|
-      replace replacement[:replace], with: replacement[:with], in_file: path
+  if @replacements.size > 0
+    @replacements.each do |path, replacements|
+      number_of_matches = 0
+      replacements.each do |replacement|
+        replace replacement[:replace], with: replacement[:with], in_file: path
+        number_of_matches += File.open(path, 'r').read.scan(replacement[:with]).size
+      end
+      puts "Replaced #{replacements.size} path(s) in #{path.split(File::SEPARATOR).last}, #{number_of_matches} replacements total".yellow
     end
+  else
+    puts "No paths to replace".yellow
   end
-  puts 'Replaced paths'.yellow
 end
 
 desc "Build and export project to path"
@@ -120,8 +126,14 @@ end
 namespace :remove do
   desc "Remove console.log statements from #{@js_build_filename}"
   task "console.log" do
-    replace /console\.log\(.+?\);?/, with: '', in_file: "#{@js_build_dir}/#{@js_build_filename}"
-    puts 'Removed console.logs'.magenta
+    file_path = File.join(@js_build_dir, @js_build_filename)
+    number_of_matches = File.open(file_path, 'r').read.scan(/console\.log\(.+?\);?/).size
+    if number_of_matches > 0
+      replace /console\.log\(.+?\);?/, with: '', in_file: file_path
+      puts "Removed #{number_of_matches} console.logs".yellow
+    else
+      puts "No console.logs to replace".yellow
+    end
   end
 end
 
