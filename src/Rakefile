@@ -65,7 +65,11 @@ namespace :build do
 
   desc 'Copy images'
   task img: [@img_build_dir] do
+    Dir.glob(File.join(@img_build_dir, "**", "*")).each do |file|
+      FileUtils.rm_r file
+    end
     img_paths.each {|ip| FileUtils.copy_file ip, "#{@img_build_dir}/#{ip.gsub('img/', '')}" }
+    puts "Copied images".yellow
   end
 
   desc 'Copy fonts'
