@@ -59,13 +59,12 @@ namespace :build do
   task js: [@js_build_dir] do
     compiler = Closure::Compiler.new(compilation_level: @js_compression_level)
 
-    js = ""
-    @js_components.each do |js_component|
-      js += if js_component =~ /.*\.coffee$/
-              CoffeeScript.compile File.read(js_component)
-            else
-              File.read(js_component)
-            end
+    js = @js_components.inject '' do |result, js_component|
+      result += if js_component =~ /.*\.coffee$/
+                  CoffeeScript.compile File.read(js_component)
+                else
+                  File.read(js_component)
+                end
     end
 
     contents = compiler.compile js
