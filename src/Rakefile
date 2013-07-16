@@ -4,6 +4,7 @@ require 'colorize'
 require 'closure-compiler'
 require 'fileutils'
 require 'httparty'
+require 'coffee-script'
 require_relative 'config'
 
 @js_build_filename    ||= 'app.js'
