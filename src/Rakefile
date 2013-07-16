@@ -57,10 +57,19 @@ namespace :build do
 
   desc 'Minify and concatenate js'
   task js: [@js_build_dir] do
-    contents = Closure::Compiler.new(compilation_level: @js_compression_level).compile_files @js_components
-    File.open "#{@js_build_dir}/#{@js_build_filename}", "w" do |file|
+    compiler = Closure::Compiler.new(compilation_level: @js_compression_level)
+
+    js = ""
+    @js_components.each do |js_component|
+      js += File.open(js_component, 'r').read
+    end
+
+    contents = compiler.compile js
+
+    File.open File.join(@js_build_dir, @js_build_filename), "w" do |file|
       file.write contents
     end
+
     puts "overwrite".yellow + " #{@js_build_dir}/#{@js_build_filename}"
   end
 
