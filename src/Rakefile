@@ -78,13 +78,16 @@ namespace :build do
 
   desc 'Copy images'
   task img: [@img_build_dir] do
+    remove_files_in @img_build_dir
     img_paths.each {|ip| FileUtils.copy_file ip, "#{@img_build_dir}/#{ip.gsub('img/', '')}" }
+    puts "Copied images".yellow
   end
 
   desc 'Copy fonts'
   task fonts: [@fonts_build_dir] do
     remove_files_in @fonts_build_dir
     font_paths.each {|fp| FileUtils.copy_file fp, "#{@fonts_build_dir}/#{fp.gsub('fonts/', '')}" }
+    puts "Copied fonts".yellow
   end
 end
 
