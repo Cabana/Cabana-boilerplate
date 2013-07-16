@@ -61,7 +61,11 @@ namespace :build do
 
     js = ""
     @js_components.each do |js_component|
-      js += File.open(js_component, 'r').read
+      js += if js_component =~ /.*\.coffee$/
+              CoffeeScript.compile File.read(js_component)
+            else
+              File.read(js_component)
+            end
     end
 
     contents = compiler.compile js
