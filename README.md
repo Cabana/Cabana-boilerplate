@@ -78,6 +78,7 @@ Since the order in which JavaScript file are concatenated is important you will 
   "js/foundation/foundation.js",
   "js/foundation/foundation.clearing.js",
   "js/foundation/foundation.interchange.js",
+  "js/some-file.coffee",
   "js/init.js"
 ]
 ```
