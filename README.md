@@ -45,7 +45,8 @@ Here is a list of the tasks and what they do
 - `build:fonts` will copy over the fonts.
 - `build:img` will copy over the images.
 - `build:js` will concatenate and minify javascript, and compile coffeescript.
-- `build:for_deploy` will run `build`, `replace_paths`, and `remove:console.log`
+- `build:for_deploy` will run `build`, `compress_img`, `replace_paths`, and `remove:console.log`
+- `compress_img` will compress images in src/js
 - `export` will run `build:for_deploy` and export the project to a folder.
 - `remove:console.log` will remove `console.log` statments from the compiled js file.
 - `replace_paths` will replace paths as specified in config.rb.
