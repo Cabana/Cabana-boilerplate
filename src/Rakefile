@@ -4,6 +4,7 @@ require 'colorize'
 require 'closure-compiler'
 require 'fileutils'
 require 'httparty'
+require 'coffee-script'
 require_relative 'config'
 
 @js_build_filename    ||= 'app.js'
@@ -56,10 +57,22 @@ namespace :build do
 
   desc 'Minify and concatenate js'
   task js: [@js_build_dir] do
-    contents = Closure::Compiler.new(compilation_level: @js_compression_level).compile_files @js_components
-    File.open "#{@js_build_dir}/#{@js_build_filename}", "w" do |file|
+    compiler = Closure::Compiler.new(compilation_level: @js_compression_level)
+
+    js = @js_components.inject '' do |result, js_component|
+      result += if js_component =~ /.*\.coffee$/
+                  CoffeeScript.compile File.read(js_component)
+                else
+                  File.read(js_component)
+                end
+    end
+
+    contents = compiler.compile js
+
+    File.open File.join(@js_build_dir, @js_build_filename), "w" do |file|
       file.write contents
     end
+
     puts "overwrite".yellow + " #{@js_build_dir}/#{@js_build_filename}"
   end
 
