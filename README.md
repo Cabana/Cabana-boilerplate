@@ -38,14 +38,17 @@ To list all of the build scripts tasks run `rake --tasks`. This will show you a 
 
 `rake build` is setup as the default task, which means that simply running `rake` is the same as running `rake build`.
 
-Here is list of what the build script will do
+Here is a list of the tasks and what they do
 
-- Copy images from src/img to resources/img.
-- Copy fonts from src/fonts to resources/fonts.
-- Concatenate and minify the JavaScript and place the results in resources/js/app.js.
-- Compile the SCSS into resources/css/app.css.
-- Replace paths.
-- Remove console.logs and alerts (optionally).
+- `build` will run `build:css`, `build:js` , `build:fonts` and `build:img`.
+- `build:css` will compile SCSS into CSS.
+- `build:fonts` will copy over the fonts.
+- `build:img` will copy over the images.
+- `build:js` will concatenate and minify javascript, and compile coffeescript.
+- `build:for_deploy` will run `build`, `replace_paths`, and `remove:console.log`
+- `export` will run `build:for_deploy` and export the project to a folder.
+- `remove:console.log` will remove `console.log` statments from the compiled js file.
+- `replace_paths` will replace paths as specified in config.rb.
 
 ### Guard
 "[Guard](https://github.com/guard/guard) is a command line tool to easily handle events on file system modifications."
@@ -62,7 +65,7 @@ The build script can be configured in the config.rb file. Descriptions for the i
 ### JavaScript
 To build the JavaScript run `rake build:js`.
 
-This will concatenate and minify your required JavaScript files.
+This will concatenate and minify your required JavaScript files and compile CoffeeScript files.
 
 Since the order in which JavaScript file are concatenated is important you will send a setting for this in the config.rb file. The setting is called `@js_components` and it is an array filepaths to the JavaScript files you wanna use.
 
@@ -75,6 +78,7 @@ Since the order in which JavaScript file are concatenated is important you will 
   "js/foundation/foundation.js",
   "js/foundation/foundation.clearing.js",
   "js/foundation/foundation.interchange.js",
+  "js/some-file.coffee",
   "js/init.js"
 ]
 ```
@@ -112,4 +116,8 @@ There is a rake task for doing this (its `rake replace_paths`) but you shouldn't
 If you're getting ready to move to production it might be a good idea to build the resources using `rake build:for_deploy`. This will not only build the resources but it will also remove things like `console.log()` and `alert()` statements from the JavaScript, which are normally only required during development.
 
 ### Exporting
-...
+The build script makes it possible to export the project to another location. This would typically be somewhere on the I drive so its viewable via kunder.cabana.dk.
+
+To export the project edit `@export_dir` in config.rb and run `rake export`. That should do it!
+
+If you have any PHP files in your project the script will do some magic and compile them into html files.

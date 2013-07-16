@@ -4,6 +4,7 @@ require 'colorize'
 require 'closure-compiler'
 require 'fileutils'
 require 'httparty'
+require 'coffee-script'
 require_relative 'config'
 
 @js_build_filename    ||= 'app.js'
@@ -55,24 +56,39 @@ namespace :build do
     system "compass compile --css-dir #{@css_build_dir} --force"
   end
 
-  desc 'Minify and concatenate js'
+  desc 'Minify and concatenate js, and compile coffeescript'
   task js: [@js_build_dir] do
-    contents = Closure::Compiler.new(compilation_level: @js_compression_level).compile_files @js_components
-    File.open "#{@js_build_dir}/#{@js_build_filename}", "w" do |file|
+    compiler = Closure::Compiler.new(compilation_level: @js_compression_level)
+
+    js = @js_components.inject '' do |result, js_component|
+      result += if js_component =~ /.*\.coffee$/
+                  CoffeeScript.compile File.read(js_component)
+                else
+                  File.read(js_component)
+                end
+    end
+
+    contents = compiler.compile js
+
+    File.open File.join(@js_build_dir, @js_build_filename), "w" do |file|
       file.write contents
     end
+
     puts "overwrite".yellow + " #{@js_build_dir}/#{@js_build_filename}"
   end
 
   desc 'Copy images'
   task img: [@img_build_dir] do
+    remove_files_in @img_build_dir
     img_paths.each {|ip| FileUtils.copy_file ip, "#{@img_build_dir}/#{ip.gsub('img/', '')}" }
+    puts "Copied images".yellow
   end
 
   desc 'Copy fonts'
   task fonts: [@fonts_build_dir] do
     remove_files_in @fonts_build_dir
     font_paths.each {|fp| FileUtils.copy_file fp, "#{@fonts_build_dir}/#{fp.gsub('fonts/', '')}" }
+    puts "Copied fonts".yellow
   end
 end
 
@@ -88,12 +104,18 @@ end
 
 desc "Replace paths"
 task :replace_paths do
-  @replacements.each do |path, replacements|
-    replacements.each do |replacement|
-      replace replacement[:replace], with: replacement[:with], in_file: path
+  if @replacements.size > 0
+    @replacements.each do |path, replacements|
+      number_of_matches = 0
+      replacements.each do |replacement|
+        replace replacement[:replace], with: replacement[:with], in_file: path
+        number_of_matches += File.open(path, 'r').read.scan(replacement[:with]).size
+      end
+      puts "Replaced #{replacements.size} path(s) in #{path.split(File::SEPARATOR).last}, #{number_of_matches} replacements total".yellow
     end
+  else
+    puts "No paths to replace".yellow
   end
-  puts 'Replaced paths'.yellow
 end
 
 desc "Build and export project to path"
@@ -131,8 +153,14 @@ end
 namespace :remove do
   desc "Remove console.log statements from #{@js_build_filename}"
   task "console.log" do
-    replace /console\.log\(.+?\);?/, with: '', in_file: "#{@js_build_dir}/#{@js_build_filename}"
-    puts 'Removed console.logs'.magenta
+    file_path = File.join(@js_build_dir, @js_build_filename)
+    number_of_matches = File.open(file_path, 'r').read.scan(/console\.log\(.+?\);?/).size
+    if number_of_matches > 0
+      replace /console\.log\(.+?\);?/, with: '', in_file: file_path
+      puts "Removed #{number_of_matches} console.logs".yellow
+    else
+      puts "No console.logs to replace".yellow
+    end
   end
 end
 
@@ -200,4 +228,8 @@ def full_size_of_files_in path
   full_size = Dir[File.join(path, "**", "*")].map do |f|
     file_size_in_kb f
   end.to_a.inject(0){|sum,item| sum + item}
+end
+
+Kernel.trap("EXIT") do
+  @run_on_exit.call
 end

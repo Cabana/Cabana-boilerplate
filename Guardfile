@@ -28,6 +28,10 @@ guard :shell do
   watch %r{src/img/(.+)} do |m|
     system "cd src && rake build:img"
   end
+  
+  watch %r{src/config\.rb} do |m|
+    system "cd src && rake build"
+  end
 end
 
 # Use livereload to automatically refresh the browser
