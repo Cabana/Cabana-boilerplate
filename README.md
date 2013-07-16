@@ -44,7 +44,7 @@ Here is a list of the tasks and what they do
 - `build:css` will compile SCSS into CSS.
 - `build:fonts` will copy over the fonts.
 - `build:img` will copy over the images.
-- `build:js` will concatenate and minify javascript.
+- `build:js` will concatenate and minify javascript, and compile coffeescript.
 - `build:for_deploy` will run `build`, `replace_paths`, and `remove:console.log`
 - `export` will run `build:for_deploy` and export the project to a folder.
 - `remove:console.log` will remove `console.log` statments from the compiled js file.
@@ -65,7 +65,7 @@ The build script can be configured in the config.rb file. Descriptions for the i
 ### JavaScript
 To build the JavaScript run `rake build:js`.
 
-This will concatenate and minify your required JavaScript files.
+This will concatenate and minify your required JavaScript files and compile CoffeeScript files.
 
 Since the order in which JavaScript file are concatenated is important you will send a setting for this in the config.rb file. The setting is called `@js_components` and it is an array filepaths to the JavaScript files you wanna use.
 

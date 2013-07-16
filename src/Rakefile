@@ -55,7 +55,7 @@ namespace :build do
     system "compass compile --css-dir #{@css_build_dir} --force"
   end
 
-  desc 'Minify and concatenate js'
+  desc 'Minify and concatenate js, and compile coffeescript'
   task js: [@js_build_dir] do
     compiler = Closure::Compiler.new(compilation_level: @js_compression_level)
 
