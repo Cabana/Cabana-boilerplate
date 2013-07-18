@@ -1,6 +1,7 @@
 ## Fontello
 
-URL: http://fontello.com/
+URL: http://fontello.com/ <br/>
+Currently contains whole Entypo library.
 
 ## Font conversion tool
 
