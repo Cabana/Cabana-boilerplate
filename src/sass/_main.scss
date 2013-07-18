@@ -1,0 +1,68 @@
+/*****************************************
+	HEADER
+*****************************************/
+
+header {
+	
+	margin-bottom:emCalc(20px);
+	background-color:lighten($primary-color, 30%);
+
+	.logo{  }
+
+}
+
+
+/*****************************************
+	ARTICLE
+*****************************************/
+
+.article { }
+.article__title { }
+.article__excerpt { }
+.article__meta { margin-bottom:emCalc(20px); }
+.article__date { font-size:emCalc(12px); color:darken($secondary-color, 20%); }
+.article__author { font-size:emCalc(12px); color:$secondary-color; }
+.article__featured { }
+.article__featured-caption { color:darken($secondary-color, 20%); margin-bottom:emCalc(20px); }
+.article__body { }
+
+
+/*****************************************
+	PANELS
+*****************************************/
+
+.panel { }
+.panel__heading { }
+.panel__heading--primary {
+	
+	h3{ color:$primary-color; }
+
+}
+.panel__heading--secondary {
+	
+	h3{ color:darken($secondary-color, 50%); }
+
+}
+.panel__body { }
+
+
+/*****************************************
+	FOOTER PANELS
+*****************************************/
+
+.panel-footer { margin-top:emCalc(30px); }
+.panel-footer__heading { }
+.panel-footer__heading--secondary {
+	
+	h5{ color:darken($secondary-color, 50%); }
+
+}
+.panel-footer__body { }
+.panel-footer__body--primary { background-color:lighten($primary-color, 30%); }
+
+
+/*****************************************
+	FOOTER
+*****************************************/
+
+footer { margin-top: emCalc(30px); background-color:$secondary-color; }
