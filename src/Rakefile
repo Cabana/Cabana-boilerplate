@@ -79,8 +79,8 @@ namespace :build do
 
   desc 'Copy images'
   task img: [@img_build_dir] do
-    remove_files_in @img_build_dir
-    img_paths.each {|ip| FileUtils.copy_file ip, "#{@img_build_dir}/#{ip.gsub('img/', '')}" }
+    FileUtils.rm_r @img_build_dir
+    FileUtils.cp_r 'img', @img_build_dir
     puts "Copied images".yellow
   end
 
@@ -94,6 +94,7 @@ end
 
 desc 'Compress images in src/img'
 task :compress_img do
+  puts 'Compressing images, be patient'.yellow
   before_file_size = full_size_of_files_in "img"
   system "smusher --quiet img"
   after_file_size = full_size_of_files_in "img"
@@ -205,11 +206,11 @@ def file_size_in_kb file_path
 end
 
 def font_paths
-  Dir["fonts/**/*"].map {|path| path unless path.include?("config.json") }.compact
-end
-
-def img_paths
-  Dir["img/**/*"]
+  Dir["fonts/*"].map do |path|
+    if path =~ /.+\.(eot|svg|ttf|woff)/
+      path
+    end
+  end.compact
 end
 
 def remove_files_in folder_path
