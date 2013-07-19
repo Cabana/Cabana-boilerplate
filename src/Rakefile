@@ -94,6 +94,7 @@ end
 
 desc 'Compress images in src/img'
 task :compress_img do
+  puts 'Compressing images, be patient'.yellow
   before_file_size = full_size_of_files_in "img"
   system "smusher --quiet img"
   after_file_size = full_size_of_files_in "img"
