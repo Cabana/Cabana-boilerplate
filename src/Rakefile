@@ -209,10 +209,6 @@ def font_paths
   Dir["fonts/**/*"].map {|path| path unless path.include?("config.json") }.compact
 end
 
-def img_paths
-  Dir["img/**/*"]
-end
-
 def remove_files_in folder_path
   Dir["#{folder_path}/**/*"].each {|file| FileUtils.rm_rf file }
 end
