@@ -206,7 +206,11 @@ def file_size_in_kb file_path
 end
 
 def font_paths
-  Dir["fonts/**/*"].map {|path| path unless path.include?("config.json") }.compact
+  Dir["fonts/*"].map do |path|
+    if path =~ /.+\.(eot|svg|ttf|woff)/
+      path
+    end
+  end.compact
 end
 
 def remove_files_in folder_path
