@@ -102,7 +102,7 @@ To fix that edit the paths.json file.
 
 This file should look something like this
 
-```javascript
+```ruby
 @replacements = {
   "../../resources/css/www_kongress_dk/app.css" => [
     { replace: "../img", with: "../../img/www_kongress_dk" },
@@ -122,3 +122,7 @@ The build script makes it possible to export the project to another location. Th
 To export the project edit `@export_dir` in config.rb and run `rake export`. That should do it!
 
 If you have any PHP files in your project the script will do some magic and compile them into html files.
+
+## Running code after any rake task
+If you need to do stuff every time after rake is done you can put that code in `@run_on_exit` in config.rb. This would normally be copying the compiled resources into other directories such as web01 or the I drive.
+Note that this will run after **every** time that rake exits, even if you're just running `rake --tasks`. This can lead to problems if you are using it to replace paths.
