@@ -79,8 +79,8 @@ namespace :build do
 
   desc 'Copy images'
   task img: [@img_build_dir] do
-    remove_files_in @img_build_dir
-    img_paths.each {|ip| FileUtils.copy_file ip, "#{@img_build_dir}/#{ip.gsub('img/', '')}" }
+    FileUtils.rm_r @img_build_dir
+    FileUtils.cp_r 'img', @img_build_dir
     puts "Copied images".yellow
   end
 
