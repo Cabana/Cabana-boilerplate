@@ -5,6 +5,8 @@ require 'closure-compiler'
 require 'fileutils'
 require 'httparty'
 require 'coffee-script'
+require 'base64'
+require 'highline/import'
 require_relative 'config'
 
 @js_build_filename    ||= 'app.js'
@@ -163,6 +165,23 @@ namespace :remove do
       puts "No console.logs to replace".yellow
     end
   end
+end
+
+desc 'Update the Rakefile to latest stable version'
+task :update do
+  contents = contents_of_rakefile_on_github
+  File.open 'Rakefile', 'w' do |f|
+    f.puts contents
+  end
+end
+
+def contents_of_rakefile_on_github
+  username = ask("You github username: ") { |q| q.echo = true }
+  password = ask("And password: ") { |q| q.echo = "*" }
+
+  response = JSON.parse(HTTParty.get("https://api.github.com/repos/Cabana/Cabana-boilerplate/contents/src/Rakefile", basic_auth: { username: username, password: password}).body)['content']
+
+  Base64.decode64(response)
 end
 
 def replace pattern, hash = {}
