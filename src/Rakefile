@@ -167,21 +167,26 @@ namespace :remove do
   end
 end
 
-desc 'Update the Rakefile to latest stable version'
+desc 'Update the Rakefile and install latest dependencies'
 task :update do
-  contents = contents_of_rakefile_on_github
-  File.open 'Rakefile', 'w' do |f|
-    f.puts contents
-  end
-end
-
-def contents_of_rakefile_on_github
-  username = ask("You github username: ") { |q| q.echo = true }
+  username = ask("Your github username: ") { |q| q.echo = true }
   password = ask("And password: ") { |q| q.echo = "*" }
 
   response = JSON.parse(HTTParty.get("https://api.github.com/repos/Cabana/Cabana-boilerplate/contents/src/Rakefile", basic_auth: { username: username, password: password}).body)['content']
+  rakefile = Base64.decode64(response)
 
-  Base64.decode64(response)
+  response = JSON.parse(HTTParty.get("https://api.github.com/repos/Cabana/Cabana-boilerplate/contents/Gemfile", basic_auth: { username: username, password: password}).body)['content']
+  gemfile = Base64.decode64(response)
+
+  File.open 'Rakefile', 'w' do |f|
+    f.puts rakefile
+  end
+
+  File.open '../Gemfile', 'w' do |f|
+    f.puts gemfile
+  end
+
+  `bundle install`
 end
 
 def replace pattern, hash = {}
