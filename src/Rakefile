@@ -6,6 +6,7 @@ require 'fileutils'
 require 'httparty'
 require 'coffee-script'
 require_relative 'config'
+require_relative 'solution' if File.exists? 'solution.rb'
 
 @js_build_filename    ||= 'app.js'
 @css_build_dir        ||= '../resources/css'
