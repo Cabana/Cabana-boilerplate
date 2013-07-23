@@ -125,3 +125,6 @@ If you have any PHP files in your project the script will do some magic and comp
 ### Running code after any rake task
 If you need to do stuff every time after rake is done you can put that code in `@run_on_exit` in config.rb. This would normally be copying the compiled resources into other directories such as web01 or the I drive.
 Note that this will run after **every** time that rake exits, even if you're just running `rake --tasks`. This can lead to problems if you are using it to replace paths.
+
+### Updating Rakefile
+The build script often gets updated and its always a good idea to be on the latest version. Run `rake udpate` to replace the contents of Rakefile with whatever is on the GitHub master branch.

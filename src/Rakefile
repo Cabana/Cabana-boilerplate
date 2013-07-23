@@ -5,6 +5,8 @@ require 'closure-compiler'
 require 'fileutils'
 require 'httparty'
 require 'coffee-script'
+require 'base64'
+require 'highline/import'
 require_relative 'config'
 
 @js_build_filename    ||= 'app.js'
@@ -148,6 +150,28 @@ task export: ['build'] do |t|
 
   # remove the export folder from the project
   FileUtils.rm_r export_folder_path
+end
+
+desc 'Update the Rakefile and install latest dependencies'
+task :update do
+  username = ask("Your github username: ") { |q| q.echo = true }
+  password = ask("And password: ") { |q| q.echo = "*" }
+
+  response = JSON.parse(HTTParty.get("https://api.github.com/repos/Cabana/Cabana-boilerplate/contents/src/Rakefile", basic_auth: { username: username, password: password}).body)['content']
+  rakefile = Base64.decode64(response)
+
+  response = JSON.parse(HTTParty.get("https://api.github.com/repos/Cabana/Cabana-boilerplate/contents/Gemfile", basic_auth: { username: username, password: password}).body)['content']
+  gemfile = Base64.decode64(response)
+
+  File.open 'Rakefile', 'w' do |f|
+    f.puts rakefile
+  end
+
+  File.open '../Gemfile', 'w' do |f|
+    f.puts gemfile
+  end
+
+  `bundle install`
 end
 
 def replace pattern, hash = {}
