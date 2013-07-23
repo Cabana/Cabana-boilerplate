@@ -91,7 +91,6 @@ DEPENDENCIES
   closure-compiler
   coffee-script
   colorize
-  compass
   guard
   guard-compass
   guard-livereload
@@ -100,6 +99,7 @@ DEPENDENCIES
   httparty
   rake
   rb-readline
+  sass
   smusher
   terminal-notifier
   wdm
