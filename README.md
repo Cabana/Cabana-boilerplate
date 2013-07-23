@@ -127,4 +127,4 @@ If you need to do stuff every time after rake is done you can put that code in `
 Note that this will run after **every** time that rake exits, even if you're just running `rake --tasks`. This can lead to problems if you are using it to replace paths.
 
 ### Updating Rakefile
-The build script often gets updated and its always a good idea to be on the latest version. Run `rake udpate` to replace the contents of Rakefile with whatever is on the GitHub master branch.
+The build script often gets updated and its always a good idea to be on the latest version. Run `rake udpate` to replace the contents of Rakefile with whatever is on the GitHub master branch. Note this is not tested on Windows...
