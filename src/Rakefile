@@ -7,7 +7,6 @@ require 'httparty'
 require 'coffee-script'
 require 'base64'
 require 'highline/import'
-require_relative 'config'
 require_relative 'solution' if File.exists? 'solution.rb'
 
 @js_build_filename    ||= 'app.js'
@@ -55,7 +54,8 @@ namespace :build do
 
   desc 'Build css'
   task css: [@css_build_dir] do
-    system "compass compile --css-dir #{@css_build_dir} --force"
+    # system "compass compile --css-dir #{@css_build_dir} --force"
+    system "sass --update --force --style=compressed sass:../resources/css"
   end
 
   desc 'Minify and concatenate js, and compile coffeescript'
@@ -244,3 +244,11 @@ end
 Kernel.trap("EXIT") do
   @run_on_exit.call
 end
+
+def after task_name, &block
+  Rake::Task[task_name].enhance do
+    block.call
+  end
+end
+
+require_relative 'config'

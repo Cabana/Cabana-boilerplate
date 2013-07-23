@@ -36,10 +36,6 @@
 # only for build:for_deploy task
 @replacements = {}
 
-@run_on_exit = Proc.new do
-  # code to run when rake exits
-end
-
 # Compass config
 http_path = "/"
 sass_dir = "sass"
