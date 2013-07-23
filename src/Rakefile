@@ -120,7 +120,7 @@ task :replace_paths do
 end
 
 desc "Build and export project to path"
-task export: ['build:for_deploy'] do |t|
+task export: ['build'] do |t|
   export_folder_path = File.join(File.expand_path("..", Dir.pwd), "export")
 
   # remove the export folder and destination folder if they exist
