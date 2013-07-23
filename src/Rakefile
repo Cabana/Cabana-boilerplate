@@ -54,7 +54,6 @@ namespace :build do
 
   desc 'Build css'
   task css: [@css_build_dir] do
-    # system "compass compile --css-dir #{@css_build_dir} --force"
     system "sass --update --force --style=compressed sass:../resources/css"
   end
 
