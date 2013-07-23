@@ -45,10 +45,9 @@ Here is a list of the tasks and what they do
 - `build:fonts` will copy over the fonts.
 - `build:img` will copy over the images.
 - `build:js` will concatenate and minify javascript, and compile coffeescript.
-- `build:for_deploy` will run `build`, `compress_img`, `replace_paths`, and `remove:console.log`
+- `build:for_deploy` will run `build`, `compress_img`, `replace_paths`
 - `compress_img` will compress images in src/js
 - `export` will run `build:for_deploy` and export the project to a folder.
-- `remove:console.log` will remove `console.log` statments from the compiled js file.
 - `replace_paths` will replace paths as specified in config.rb.
 
 ### Guard
@@ -114,7 +113,7 @@ This file should look something like this
 There is a rake task for doing this (its `rake replace_paths`) but you shouldn't need to explicitly call it. It will be called after having built JavaScript or CSS.
 
 ### Getting ready for deployment
-If you're getting ready to move to production it might be a good idea to build the resources using `rake build:for_deploy`. This will not only build the resources but it will also remove `console.log()` statements from the JavaScript, which are normally only required during development. Images will also be compressed.
+If you're getting ready to move to production it might be a good idea to build the resources using `rake build:for_deploy`.
 
 ### Exporting
 The build script makes it possible to export the project to another location. This would typically be somewhere on the I drive so its viewable via kunder.cabana.dk.
@@ -139,3 +138,6 @@ namespace :solution do
   end
 end
 ```
+
+### Updating Rakefile
+The build script often gets updated and its always a good idea to be on the latest version. Run `rake udpate` to replace the contents of Rakefile with whatever is on the GitHub master branch. Note this is not tested on Windows...
