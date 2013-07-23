@@ -36,6 +36,11 @@
 # only for build:for_deploy task
 @replacements = {}
 
+after 'build:for_deploy' do
+  # run code after build:for_deploy task
+  # or any other task for that matter
+end
+
 # Compass config
 http_path = "/"
 sass_dir = "sass"
