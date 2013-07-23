@@ -98,11 +98,10 @@ end
 
 desc 'Compress images in src/img'
 task :compress_img do
-  puts 'Compressing images, be patient'.yellow
-
-  before_file_size = full_size_of_files_in "img"
-
   image_paths = Dir[File.join 'img', '**', '*']
+  before_file_size = full_size_of_files_in "img"
+  puts "Compressing #{image_paths.size} images, be patient".yellow
+
   image_paths.each_with_index do |path, index|
     if system "smusher --quiet #{path}"
       puts "Compressed #{index + 1} of #{image_paths.size}"
