@@ -39,6 +39,7 @@ GEM
       multi_json (~> 1.7)
     guard-shell (0.5.1)
       guard (>= 1.1.0)
+    highline (1.6.19)
     http_parser.rb (0.5.3)
     http_parser.rb (0.5.3-x86-mingw32)
     httparty (0.11.0)
@@ -95,6 +96,7 @@ DEPENDENCIES
   guard-compass
   guard-livereload
   guard-shell
+  highline
   httparty
   rake
   rb-readline
