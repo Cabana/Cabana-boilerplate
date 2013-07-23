@@ -123,8 +123,17 @@ To export the project edit `@export_dir` in config.rb and run `rake export`. Tha
 If you have any PHP files in your project the script will do some magic and compile them into html files.
 
 ### Running code after any rake task
-If you need to do stuff every time after rake is done you can put that code in `@run_on_exit` in config.rb. This would normally be copying the compiled resources into other directories such as web01 or the I drive.
-Note that this will run after **every** time that rake exits, even if you're just running `rake --tasks`. This can lead to problems if you are using it to replace paths.
+If you need to run some code after a specific task has run, such as copying the resources to another folder that can defined using the `after` method in config.rb. Here is an example.
+
+```ruby
+after 'build' do
+  # do something
+end
+
+after 'build:for_deploy' do
+  # do something else
+end
+```
 
 ### Solution specific rake tasks
 Sometimes it might be useful to define rake tasks that are specific to the current solution. That can be done by creating a file named solution.rb inside the src folder. In there you just define your rake tasks and they will be available through the standard `rake` command.
