@@ -54,7 +54,10 @@ namespace :build do
 
   desc 'Build css'
   task css: [@css_build_dir] do
-    system "sass --update --force --style=compressed sass:../resources/css"
+    system "sass --update --force --style=compressed --quiet sass:#{@css_build_dir}"
+    Dir[File.join @css_build_dir, '**', '*'].each do |file|
+      puts "overwrite".yellow + " #{file}"
+    end
   end
 
   desc 'Minify and concatenate js, and compile coffeescript'
