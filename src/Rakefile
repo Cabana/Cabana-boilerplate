@@ -99,10 +99,19 @@ end
 desc 'Compress images in src/img'
 task :compress_img do
   puts 'Compressing images, be patient'.yellow
+
   before_file_size = full_size_of_files_in "img"
-  system "smusher --quiet img"
+
+  image_paths = Dir[File.join 'img', '**', '*']
+  image_paths.each_with_index do |path, index|
+    if system "smusher --quiet #{path}"
+      puts "Compressed #{index + 1} of #{image_paths.size}"
+    end
+  end
+
   after_file_size = full_size_of_files_in "img"
   difference = ( before_file_size - after_file_size ) / before_file_size.to_f * 100
+
   puts 'Compressed images'.yellow
   puts "You just saved #{difference.round}% on image sizes"
 end
