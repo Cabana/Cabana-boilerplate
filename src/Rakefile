@@ -47,8 +47,7 @@ namespace :build do
   task for_deploy: [
     'compress_img',
     'build',
-    'replace_paths',
-    'remove:console.log'
+    'replace_paths'
   ] do
     puts 'Resources are now ready for deployment'.magenta
   end
@@ -122,7 +121,7 @@ task :replace_paths do
 end
 
 desc "Build and export project to path"
-task export: ['build:for_deploy'] do |t|
+task export: ['build'] do |t|
   export_folder_path = File.join(File.expand_path("..", Dir.pwd), "export")
 
   # remove the export folder and destination folder if they exist
@@ -151,20 +150,6 @@ task export: ['build:for_deploy'] do |t|
 
   # remove the export folder from the project
   FileUtils.rm_r export_folder_path
-end
-
-namespace :remove do
-  desc "Remove console.log statements from #{@js_build_filename}"
-  task "console.log" do
-    file_path = File.join(@js_build_dir, @js_build_filename)
-    number_of_matches = File.open(file_path, 'r').read.scan(/console\.log\(.+?\);?/).size
-    if number_of_matches > 0
-      replace /console\.log\(.+?\);?/, with: '', in_file: file_path
-      puts "Removed #{number_of_matches} console.logs".yellow
-    else
-      puts "No console.logs to replace".yellow
-    end
-  end
 end
 
 desc 'Update the Rakefile and install latest dependencies'
