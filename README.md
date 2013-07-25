@@ -47,7 +47,7 @@ Here is a list of the tasks and what they do
 - `build:js` will concatenate and minify javascript, and compile coffeescript.
 - `build:for_deploy` will run `build`, `compress_img`, `replace_paths`
 - `compress_img` will compress images in src/js
-- `export` will run `build:for_deploy` and export the project to a folder.
+- `export` will export the project to a folder.
 - `replace_paths` will replace paths as specified in config.rb.
 
 ### Guard
