@@ -202,6 +202,8 @@ def compile_php_files_into folder_path
 
   if File.exists?('/Volumes/inetpub/Cabana/Kunder/wwwroot/frontend')
     tmp_dir = '/Volumes/inetpub/Cabana/Kunder/wwwroot/frontend'
+  elsif File.exists?('/Volumes/inetpub-1/Cabana/Kunder/wwwroot/frontend')
+    tmp_dir = '/Volumes/inetpub-1/Cabana/Kunder/wwwroot/frontend'
   elsif File.exists?('I:\Cabana\Kunder\wwwroot\frontend')
     tmp_dir = 'I:\Cabana\Kunder\wwwroot\frontend'
   else
