@@ -9,6 +9,17 @@ require 'base64'
 require 'highline/import'
 require_relative 'solution' if File.exists? 'solution.rb'
 
+def after task_name, &block
+  task task_name do
+  end
+
+  Rake::Task[task_name].enhance do
+    block.call
+  end
+end
+
+require_relative 'config'
+
 @js_build_filename    ||= 'app.js'
 @css_build_dir        ||= '../resources/css'
 @js_build_dir         ||= '../resources/js'
@@ -254,11 +265,3 @@ end
 Kernel.trap("EXIT") do
   @run_on_exit.call
 end
-
-def after task_name, &block
-  Rake::Task[task_name].enhance do
-    block.call
-  end
-end
-
-require_relative 'config'
