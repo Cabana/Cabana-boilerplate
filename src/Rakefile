@@ -85,6 +85,13 @@ namespace :build do
   task img: [@img_build_dir] do
     FileUtils.rm_r @img_build_dir
     FileUtils.cp_r 'img', @img_build_dir
+
+    Dir.glob(File.join(@img_build_dir, "**", "*")).each do |path|
+      if path.include? '_compressed'
+        File.rename(path, path.gsub('_compressed', ''))
+      end
+    end
+
     puts "Copied images".yellow
   end
 
@@ -98,12 +105,19 @@ end
 
 desc 'Compress images in src/img'
 task :compress_img do
-  image_paths = Dir[File.join 'img', '**', '*']
+  image_paths = Dir[File.join 'img', '**', '*'].map { |path| path unless path.include?('_compressed') }.compact
+
   before_file_size = full_size_of_files_in "img"
-  puts "Compressing #{image_paths.size} images, be patient".yellow
+
+  if image_paths.size == 0
+    puts "No images to compress".yellow
+  else
+    puts "Compressing #{image_paths.size} images, be patient".yellow
+  end
 
   image_paths.each_with_index do |path, index|
-    if system "smusher --quiet #{path}"
+    if !path.include?('_compressed') && system("smusher --quiet #{path}")
+      File.rename path, path.gsub(/\..*$/, "_compressed#{File.extname(path)}")
       puts "Compressed #{index + 1} of #{image_paths.size}"
     end
   end
@@ -111,8 +125,10 @@ task :compress_img do
   after_file_size = full_size_of_files_in "img"
   difference = ( before_file_size - after_file_size ) / before_file_size.to_f * 100
 
-  puts 'Compressed images'.yellow
-  puts "You just saved #{difference.round}% on image sizes"
+  unless image_paths.size == 0
+    puts 'Compressed images'.yellow
+    puts "You just saved #{difference.round}% on image sizes"
+  end
 end
 
 desc "Replace paths"
