@@ -1,11 +1,8 @@
 guard :shell do
   # Compile JS files
   watch %r{src/js/(.+)} do |m|
-    if system "cd src && rake build:js"
-      `terminal-notifier -message "JavaScripts compiled"` if RUBY_PLATFORM[/darwin/i]
-    else
-      `terminal-notifier -message "Error compiling JavaScripts"` if RUBY_PLATFORM[/darwin/i]
-    end
+    system "cd src && rake build:js"
+    `terminal-notifier -message "JavaScripts compiled"` if RUBY_PLATFORM[/darwin/i]
   end
 end
 
