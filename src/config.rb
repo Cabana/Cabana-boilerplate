@@ -31,6 +31,10 @@
   "js/init.js"
 ]
 
+# CONCAT_ONLY
+# WHITESPACE_ONLY
+# SIMPLE_OPTIMIZATIONS
+# ADVANCED_OPTIMIZATIONS
 @js_compression_level = 'SIMPLE_OPTIMIZATIONS'
 
 # only for build:for_deploy task
