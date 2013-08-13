@@ -40,11 +40,3 @@ after 'build:for_deploy' do
   # run code after build:for_deploy task
   # or any other task for that matter
 end
-
-# Compass config
-http_path = "/"
-sass_dir = "sass"
-images_dir = "img"
-javascripts_dir = "js"
-output_style = :compressed
-line_comments = false
