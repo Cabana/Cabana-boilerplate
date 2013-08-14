@@ -1,19 +1,19 @@
 /*****************************************
-	HEADER
+  HEADER
 *****************************************/
 
 header {
-	
-	margin-bottom:emCalc(20px);
-	background-color:lighten($primary-color, 30%);
 
-	.logo{  }
+  margin-bottom:emCalc(20px);
+  background-color:lighten($primary-color, 30%);
+
+  .logo{  }
 
 }
 
 
 /*****************************************
-	ARTICLE
+  ARTICLE
 *****************************************/
 
 .article { }
@@ -28,33 +28,33 @@ header {
 
 
 /*****************************************
-	PANELS
+  PANELS
 *****************************************/
 
 .panel { }
 .panel__heading { }
 .panel__heading--primary {
-	
-	h3{ color:$primary-color; }
+
+  h3{ color:$primary-color; }
 
 }
 .panel__heading--secondary {
-	
-	h3{ color:darken($secondary-color, 50%); }
+
+  h3{ color:darken($secondary-color, 50%); }
 
 }
 .panel__body { }
 
 
 /*****************************************
-	FOOTER PANELS
+  FOOTER PANELS
 *****************************************/
 
 .panel-footer { margin-top:emCalc(30px); }
 .panel-footer__heading { }
 .panel-footer__heading--secondary {
-	
-	h5{ color:darken($secondary-color, 50%); }
+
+  h5{ color:darken($secondary-color, 50%); }
 
 }
 .panel-footer__body { }
@@ -62,7 +62,7 @@ header {
 
 
 /*****************************************
-	FOOTER
+  FOOTER
 *****************************************/
 
 footer { margin-top: emCalc(30px); background-color:$secondary-color; }
