@@ -49,6 +49,7 @@ Here is a list of the tasks and what they do
 - `compress_img` will compress images in src/js
 - `export` will export the project to a folder.
 - `replace_paths` will replace paths as specified in config.rb.
+- `update` will update the Rakefile and install latest dependencies.
 
 ### Guard
 "[Guard](https://github.com/guard/guard) is a command line tool to easily handle events on file system modifications."
@@ -97,7 +98,7 @@ Any file who's name starts with an underscore is a partial and therefore wont be
 ### Replacing paths
 Sometimes its nessecary to edit the paths to some asset after a build. This could be if the production setup uses a super deep folder structure that you don't wish to mirror while developing.
 
-To fix that edit the paths.json file.
+To fix that edit the `@replacements` variable in config.rb.
 
 This file should look something like this
 
