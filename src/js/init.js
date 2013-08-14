@@ -1,9 +1,8 @@
 $(document).ready(function () {
 
-    /*
-    *   Foundation init
-    */
-    $(document).foundation();
-
+  /*
+   *   Foundation init
+   */
+  $(document).foundation();
 
 });
