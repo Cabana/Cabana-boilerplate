@@ -95,6 +95,8 @@ This will tell compass to compile the files inside the sass folder. The settings
 
 Any file who's name starts with an underscore is a partial and therefore wont be compiled into a CSS file.
 
+The sass compile options can be changed by changing `@sass_compile_options` in config.rb. To see the available options run `sass --help`.
+
 ### Replacing paths
 Sometimes its nessecary to edit the paths to some asset after a build. This could be if the production setup uses a super deep folder structure that you don't wish to mirror while developing.
 

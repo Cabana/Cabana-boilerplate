@@ -10,6 +10,11 @@
 
 @export_dir   = '/Users/davidpedersen/Desktop/export'
 
+# --style=expanded
+# --style=compressed
+# --debug-info
+@sass_compile_options = '--style=compressed'
+
 @js_components = [
   # "js/vendor/modernizr.js",
   "js/vendor/jquery.js",

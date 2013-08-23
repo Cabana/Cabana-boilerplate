@@ -18,6 +18,7 @@ require_relative 'solution' if File.exists? 'solution.rb'
 @js_components        ||= []
 @js_compression_level ||= 'SIMPLE_OPTIMIZATIONS'
 @replacements         ||= {}
+@sass_compile_options ||= '--style=expanded --debug-info'
 
 directory @css_build_dir
 directory @js_build_dir
@@ -54,7 +55,7 @@ namespace :build do
 
   desc 'Build css'
   task css: [@css_build_dir] do
-    system "sass --update --force --style=compressed --quiet sass:#{@css_build_dir}"
+    system "sass --update --force --quiet sass:#{@css_build_dir} #{@sass_compile_options}"
     Dir[File.join @css_build_dir, '**', '*'].each do |file|
       puts "overwrite".yellow + " #{file}"
     end
