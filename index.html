@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Cabana-boilerplate : Cabana's front-end boilerplate" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Cabana-boilerplate</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Cabana/Cabana-boilerplate">View on GitHub</a>
+
+          <h1 id="project_title">Cabana-boilerplate</h1>
+          <h2 id="project_tagline">Cabana's front-end boilerplate</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Cabana/Cabana-boilerplate/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Cabana/Cabana-boilerplate/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="cabana-boilerplate" class="anchor" href="#cabana-boilerplate"><span class="octicon octicon-link"></span></a>Cabana Boilerplate</h1>
+
+<p>This is our very neat boilerplate for creating awesome websites.</p>
+
+<h2>
+<a name="how-to-get-setup" class="anchor" href="#how-to-get-setup"><span class="octicon octicon-link"></span></a>How to get setup</h2>
+
+<p>If you already have all dependencies setup and configured the simply run <code>git clone https://github.com/Cabana/Cabana-boilerplate.git</code> from the command line to get started.</p>
+
+<p>However if you don't follow these steps.</p>
+
+<h3>
+<a name="1-git" class="anchor" href="#1-git"><span class="octicon octicon-link"></span></a>1. Git</h3>
+
+<p>If you're on Windows you can either use the <a href="http://git-scm.com/downloads/guis">GitHub GUI app for windows</a> or look at the <a href="http://git-scm.com/">git webite</a> for how to install the binary.</p>
+
+<p>If you're on a Mac we suggest you install <a href="http://mxcl.github.io/homebrew/">Homebrew</a> and then install git with <code>brew install git</code>.</p>
+
+<h3>
+<a name="2-ruby" class="anchor" href="#2-ruby"><span class="octicon octicon-link"></span></a>2. Ruby</h3>
+
+<p>If you're Windows go to <a href="http://rubyinstaller.org/">rubyinstall.org</a> and follow the steps there.</p>
+
+<p>If you're on a Mac you will need to install rvm. A good guide can be found <a href="http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/">here</a>.</p>
+
+<p>You should be on Ruby version 2.0.0 or later when you're done.</p>
+
+<h3>
+<a name="21-ruby-windows-only" class="anchor" href="#21-ruby-windows-only"><span class="octicon octicon-link"></span></a>2.1. Ruby (Windows only)</h3>
+
+<p>For guard to work, devkit needs to be installed. Download at: <a href="http://rubyinstaller.org/downloads/">http://rubyinstaller.org/downloads/</a>. Docs at: <a href="https://github.com/oneclick/rubyinstaller/wiki/development-kit">https://github.com/oneclick/rubyinstaller/wiki/development-kit</a></p>
+
+<h3>
+<a name="3-clone-down-the-boilerplate" class="anchor" href="#3-clone-down-the-boilerplate"><span class="octicon octicon-link"></span></a>3. Clone down the boilerplate</h3>
+
+<p>Then Git and Ruby have been setup you should be able to clone down the repo with <code>git clone https://github.com/Cabana/Cabana-boilerplate.git</code>.</p>
+
+<h3>
+<a name="4-install-gem-dependencies" class="anchor" href="#4-install-gem-dependencies"><span class="octicon octicon-link"></span></a>4. Install gem dependencies</h3>
+
+<p>Make sure <a href="http://gembundler.com/">bundler</a> is installed with <code>gem install bundler</code>. Then from within the root of the project run <code>bundle install</code> to install gem dependencies.</p>
+
+<h2>
+<a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>How to use</h2>
+
+<h3>
+<a name="build-script" class="anchor" href="#build-script"><span class="octicon octicon-link"></span></a>Build script</h3>
+
+<p>The build script itself it written using a Ruby gem called <a href="http://rake.rubyforge.org/">Rake</a>. Rake is a task runner kind of thing. It can run tasks (comprised of just Ruby code) and those tasks can have dependencies. Those tasks can then be run from the command line.</p>
+
+<p>When you wanna use the build script from the command line you have to be standing in the src folder or any of its subfolders. Otherwise the Rakefile can't be found.</p>
+
+<p>To list all of the build scripts tasks run <code>rake --tasks</code>. This will show you a list of all the tasks including how to call them from the command line and a small description of that they do.</p>
+
+<p><code>rake build</code> is setup as the default task, which means that simply running <code>rake</code> is the same as running <code>rake build</code>.</p>
+
+<p>Here is a list of the tasks and what they do</p>
+
+<ul>
+<li>
+<code>build</code> will run <code>build:css</code>, <code>build:js</code> , <code>build:fonts</code> and <code>build:img</code>.</li>
+<li>
+<code>build:css</code> will compile SCSS into CSS.</li>
+<li>
+<code>build:fonts</code> will copy over the fonts.</li>
+<li>
+<code>build:img</code> will copy over the images.</li>
+<li>
+<code>build:js</code> will concatenate and minify javascript, and compile coffeescript.</li>
+<li>
+<code>build:for_deploy</code> will run <code>build</code>, <code>compress_img</code>, <code>replace_paths</code>
+</li>
+<li>
+<code>compress_img</code> will compress images in src/js</li>
+<li>
+<code>export</code> will export the project to a folder.</li>
+<li>
+<code>replace_paths</code> will replace paths as specified in config.rb.</li>
+<li>
+<code>update</code> will update the Rakefile and install latest dependencies.</li>
+</ul><h3>
+<a name="guard" class="anchor" href="#guard"><span class="octicon octicon-link"></span></a>Guard</h3>
+
+<p>"<a href="https://github.com/guard/guard">Guard</a> is a command line tool to easily handle events on file system modifications."</p>
+
+<p>When guard is running it will watch the src folder for changes and generate a new build when you change something. So for example when you change something in the sass folder it will recompile it using the build script.</p>
+
+<p>If you're using LiveReload, guard will also reload you browser.</p>
+
+<p>To start guard run <code>guard</code> from the root of the project.</p>
+
+<h3>
+<a name="the-config-file" class="anchor" href="#the-config-file"><span class="octicon octicon-link"></span></a>The config file</h3>
+
+<p>The build script can be configured in the config.rb file. Descriptions for the individual settings can be found in the sections below.</p>
+
+<h3>
+<a name="javascript" class="anchor" href="#javascript"><span class="octicon octicon-link"></span></a>JavaScript</h3>
+
+<p>To build the JavaScript run <code>rake build:js</code>.</p>
+
+<p>This will concatenate and minify your required JavaScript files and compile CoffeeScript files.</p>
+
+<p>Since the order in which JavaScript file are concatenated is important you will send a setting for this in the config.rb file. The setting is called <code>@js_components</code> and it is an array filepaths to the JavaScript files you wanna use.</p>
+
+<p><code>@js_components</code> should could look something like this.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="vi">@js_components</span> <span class="o">=</span> <span class="o">[</span>
+  <span class="s2">"js/modernizr.js"</span><span class="p">,</span>
+  <span class="s2">"js/jquery.js"</span><span class="p">,</span>
+  <span class="s2">"js/foundation/foundation.js"</span><span class="p">,</span>
+  <span class="s2">"js/foundation/foundation.clearing.js"</span><span class="p">,</span>
+  <span class="s2">"js/foundation/foundation.interchange.js"</span><span class="p">,</span>
+  <span class="s2">"js/some-file.coffee"</span><span class="p">,</span>
+  <span class="s2">"js/init.js"</span>
+<span class="o">]</span>
+</pre></div>
+
+<p>The path specified is relative to the src folder.</p>
+
+<p>The build script will use this and make sure your files are concatenated in this order.</p>
+
+<h3>
+<a name="css" class="anchor" href="#css"><span class="octicon octicon-link"></span></a>CSS</h3>
+
+<p>The build the CSS run <code>rake build:css</code>.</p>
+
+<p>This will tell compass to compile the files inside the sass folder. The settings for compass can be found in config.rb</p>
+
+<p>Any file who's name starts with an underscore is a partial and therefore wont be compiled into a CSS file.</p>
+
+<p>The sass compile options can be changed by changing <code>@sass_compile_options</code> in config.rb. To see the available options run <code>sass --help</code>.</p>
+
+<h3>
+<a name="replacing-paths" class="anchor" href="#replacing-paths"><span class="octicon octicon-link"></span></a>Replacing paths</h3>
+
+<p>Sometimes its nessecary to edit the paths to some asset after a build. This could be if the production setup uses a super deep folder structure that you don't wish to mirror while developing.</p>
+
+<p>To fix that edit the <code>@replacements</code> variable in config.rb.</p>
+
+<p>This file should look something like this</p>
+
+<div class="highlight highlight-ruby"><pre><span class="vi">@replacements</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"../../resources/css/www_kongress_dk/app.css"</span> <span class="o">=&gt;</span> <span class="o">[</span>
+    <span class="p">{</span> <span class="ss">replace</span><span class="p">:</span> <span class="s2">"../img"</span><span class="p">,</span> <span class="ss">with</span><span class="p">:</span> <span class="s2">"../../img/www_kongress_dk"</span> <span class="p">},</span>
+    <span class="p">{</span> <span class="ss">replace</span><span class="p">:</span> <span class="s2">"../fonts"</span><span class="p">,</span> <span class="ss">with</span><span class="p">:</span> <span class="s2">"../../fonts/www_kongress_dk"</span> <span class="p">}</span>
+  <span class="o">]</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>There is a rake task for doing this (its <code>rake replace_paths</code>) but you shouldn't need to explicitly call it. It will be called after having built JavaScript or CSS.</p>
+
+<h3>
+<a name="getting-ready-for-deployment" class="anchor" href="#getting-ready-for-deployment"><span class="octicon octicon-link"></span></a>Getting ready for deployment</h3>
+
+<p>If you're getting ready to move to production it might be a good idea to build the resources using <code>rake build:for_deploy</code>.</p>
+
+<h3>
+<a name="exporting" class="anchor" href="#exporting"><span class="octicon octicon-link"></span></a>Exporting</h3>
+
+<p>The build script makes it possible to export the project to another location. This would typically be somewhere on the I drive so its viewable via kunder.cabana.dk.</p>
+
+<p>To export the project edit <code>@export_dir</code> in config.rb and run <code>rake export</code>. That should do it!</p>
+
+<p>If you have any PHP files in your project the script will do some magic and compile them into html files.</p>
+
+<h3>
+<a name="running-code-after-any-rake-task" class="anchor" href="#running-code-after-any-rake-task"><span class="octicon octicon-link"></span></a>Running code after any rake task</h3>
+
+<p>If you need to run some code after a specific task has run, such as copying the resources to another folder that can defined using the <code>after</code> method in config.rb. Here is an example.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="n">after</span> <span class="s1">'build'</span> <span class="k">do</span>
+  <span class="c1"># do something</span>
+<span class="k">end</span>
+
+<span class="n">after</span> <span class="s1">'build:for_deploy'</span> <span class="k">do</span>
+  <span class="c1"># do something else</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>
+<a name="solution-specific-rake-tasks" class="anchor" href="#solution-specific-rake-tasks"><span class="octicon octicon-link"></span></a>Solution specific rake tasks</h3>
+
+<p>Sometimes it might be useful to define rake tasks that are specific to the current solution. That can be done by creating a file named solution.rb inside the src folder. In there you just define your rake tasks and they will be available through the standard <code>rake</code> command.</p>
+
+<p>Its a good idea to group the solution specific tasks under a namespace to avoid conflicts. Here is an example.</p>
+
+<div class="highlight highlight-ruby"><pre><span class="n">namespace</span> <span class="ss">:solution</span> <span class="k">do</span>
+  <span class="n">task</span> <span class="ss">:say_hello</span> <span class="k">do</span>
+    <span class="nb">puts</span> <span class="s2">"hello world"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+<h3>
+<a name="updating-rakefile" class="anchor" href="#updating-rakefile"><span class="octicon octicon-link"></span></a>Updating Rakefile</h3>
+
+<p>The build script often gets updated and its always a good idea to be on the latest version. Run <code>rake udpate</code> to replace the contents of Rakefile with whatever is on the GitHub master branch. Note this is not tested on Windows...</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Cabana-boilerplate maintained by <a href="https://github.com/Cabana">Cabana</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
