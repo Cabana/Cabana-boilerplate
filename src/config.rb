@@ -35,6 +35,7 @@
   # "js/foundation/foundation.section.js",
   # "js/foundation/foundation.tooltips.js",
   # "js/foundation/foundation.topbar.js",
+  "js/cabana/cabana.FBComments.js",
   "js/cabana/cabana.youtube.js",
   "js/init.js"
 ]
