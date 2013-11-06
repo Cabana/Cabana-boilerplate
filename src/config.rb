@@ -44,7 +44,7 @@
 # WHITESPACE_ONLY
 # SIMPLE_OPTIMIZATIONS
 # ADVANCED_OPTIMIZATIONS
-@js_compression_level = 'CONCAT_ONLY'
+@js_compression_level = 'WHITESPACE_ONLY'
 
 # only for build:for_deploy task
 @replacements = {}
