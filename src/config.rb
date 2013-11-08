@@ -16,9 +16,11 @@
 @sass_compile_options = '--style=compressed'
 
 @js_components = [
+  
   "js/vendor/custom.modernizr.js",
   "js/vendor/jquery.js",
   "js/vendor/jquery-ui-1.10.3.custom.js",
+  
   "js/foundation/foundation.js",
   "js/foundation/foundation.abide.js",
   "js/foundation/foundation.alerts.js",
@@ -35,9 +37,12 @@
   "js/foundation/foundation.section.js",
   "js/foundation/foundation.tooltips.js",
   "js/foundation/foundation.topbar.js",
+  
+  "js/cabana/cabana.browser.js",
   "js/cabana/cabana.FBComments.js",
   "js/cabana/cabana.youtube.js",
   "js/cabana/cabana.sayt.js",
+  
   "js/init.js"
 ]
 
