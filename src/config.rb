@@ -42,6 +42,7 @@
   "js/cabana/cabana.FBComments.js",
   "js/cabana/cabana.youtube.js",
   "js/cabana/cabana.sayt.js",
+  "js/cabana/cabana.offcanvas.js",
   
   "js/init.js"
 ]
