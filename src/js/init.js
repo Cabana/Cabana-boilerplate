@@ -1,11 +1,6 @@
 $(document).ready(function () {
 
     /*
-    *   Fast Click
-    */
-    FastClick.attach(document.body);
-
-    /*
      *   Foundation init
      */
     $(document).foundation();
@@ -15,6 +10,11 @@ $(document).ready(function () {
     *   Cabana init
     */
     $.Cabana.browser.addHTMLClasses();
+
+    $(document).offcanvas({
+        navOpenBtn: '.nav-open',
+        navCloseBtn: '.nav-close'
+    });
 
     $(window).on('load', function () {
 
