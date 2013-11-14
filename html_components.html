@@ -343,40 +343,48 @@
     </div>
     <div class="row">
         <div class="large-6 columns">
-            <h4>Form</h4>
+            <h4>Form with validation</h4>
             
 
 
 
 
 
-            <!-- FORM WITH ROWS/COLUMNS EXAMPLE -->
+            <!-- FORM WITH ROWS/COLUMNS AND VALIDATION EXAMPLE -->
 
-            <form>
+            <script>
+                $(document).ready(function () {
+
+                    $('#testForm').validate();
+
+                });
+            </script>
+
+            <form id="testForm">
                 <fieldset>
                     <legend>Fieldset</legend>
 
                     <div class="row">
                         <div class="large-12 columns">
                             <label>Input Label</label>
-                            <input type="text" placeholder="large-12.columns">
+                            <input type="text" placeholder="large-12.columns" name="name01" data-rule-required="true" data-msg-required="Please Fill">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="large-4 columns">
                             <label>Input Label</label>
-                            <input type="text" placeholder="large-4.columns">
+                            <input type="text" placeholder="large-4.columns" name="name02" data-rule-required="true" data-msg-required="Please Fill">
                         </div>
                         <div class="large-4 columns">
                             <label>Input Label</label>
-                            <input type="text" placeholder="large-4.columns">
+                            <input type="text" placeholder="large-4.columns" name="name03" data-rule-required="true" data-msg-required="Please Fill">
                         </div>
                         <div class="large-4 columns">
                             <div class="row collapse">
                                 <label>Input Label</label>
                                 <div class="small-9 columns">
-                                    <input type="text" placeholder="small-9.columns">
+                                    <input type="text" placeholder="small-9.columns" name="name04" data-rule-required="true" data-msg-required="Please Fill">
                                 </div>
                                 <div class="small-3 columns">
                                     <span class="postfix">.com</span>
@@ -388,13 +396,13 @@
                     <div class="row">
                         <div class="large-12 columns">
                             <label>Textarea Label</label>
-                            <textarea placeholder="small-12.columns"></textarea>
+                            <textarea placeholder="small-12.columns" name="name05" data-rule-required="true" data-msg-required="Please Fill"></textarea>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="large-12 columns">
-                            <input type="submit" class="button small right" />
+                            <input type="submit" class="button small right" name="name06" />
                         </div>
                     </div>
                     
