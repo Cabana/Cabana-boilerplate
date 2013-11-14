@@ -1,6 +1,11 @@
 $(document).ready(function () {
 
     /*
+    *   Fast Click
+    */
+    FastClick.attach(document.body);
+
+    /*
      *   Foundation init
      */
     $(document).foundation();

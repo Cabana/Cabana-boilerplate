@@ -44,7 +44,10 @@
   "js/cabana/cabana.sayt.js",
   "js/cabana/cabana.offcanvas.js",
   
+  "js/fastclick.js",
+
   "js/init.js"
+
 ]
 
 # CONCAT_ONLY
