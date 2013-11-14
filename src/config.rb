@@ -44,7 +44,10 @@
   "js/cabana/cabana.sayt.js",
   "js/cabana/cabana.offcanvas.js",
   
-  "js/fastclick.js"
+  "js/fastclick.js",
+  "js/jquery.validate/jquery.validate.js",
+  "js/jquery.validate/additional-methods.js"
+
 
 ]
 
