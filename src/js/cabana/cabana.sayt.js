@@ -32,6 +32,9 @@
     // prefix all custom events that this widget will fire: "sayt:"
     widgetEventPrefix: 'sayt:',
 
+    //set version
+    version: '0.1',
+
     _create: function() {
       _this = this;
 
@@ -244,4 +247,5 @@
       this._super( "_setOption", key, value );
     }
   });
+
 })( jQuery, window, document );
