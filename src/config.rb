@@ -20,22 +20,25 @@
   "js/vendor/custom.modernizr.js",
   "js/vendor/jquery.js",
   "js/vendor/jquery-ui-1.10.3.custom.js",
+  "js/vendor/fastclick.js",
+  "js/vendor/jquery.autocomplete.js",
+  "js/vendor/jquery.cookie.js",
+  "js/vendor/placeholder.js",
   
   "js/foundation/foundation.js",
   "js/foundation/foundation.abide.js",
-  "js/foundation/foundation.alerts.js",
+  "js/foundation/foundation.accordion.js",
+  "js/foundation/foundation.alert.js",
   "js/foundation/foundation.clearing.js",
-  "js/foundation/foundation.cookie.js",
   "js/foundation/foundation.dropdown.js",
-  "js/foundation/foundation.forms.js",
   "js/foundation/foundation.interchange.js",
   "js/foundation/foundation.joyride.js",
   "js/foundation/foundation.magellan.js",
+  "js/foundation/foundation.offcanvas.js",
   "js/foundation/foundation.orbit.js",
-  "js/foundation/foundation.placeholder.js",
   "js/foundation/foundation.reveal.js",
-  "js/foundation/foundation.section.js",
-  "js/foundation/foundation.tooltips.js",
+  "js/foundation/foundation.tab.js",
+  "js/foundation/foundation.tooltip.js",
   "js/foundation/foundation.topbar.js",
   
   "js/cabana/cabana.browser.js",
@@ -44,7 +47,7 @@
   "js/cabana/cabana.sayt.js",
   "js/cabana/cabana.offcanvas.js",
   
-  "js/fastclick.js",
+  
   "js/jquery.validate/jquery.validate.js",
   "js/jquery.validate/additional-methods.js"
 

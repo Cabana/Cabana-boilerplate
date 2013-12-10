@@ -120,7 +120,7 @@
         <div class="large-12 columns">
             <h1>Super-template</h1>
             <p><a href="#" class="button small secondary show-for-small nav-open">Open Nav</a></p>
-            <p>The super-template is build upon the <a href="http://foundation.zurb.com/docs/components/grid.html" target="_blank">Foundation 4-grid system</a></p>
+            <p>The super-template is build upon the <a href="http://foundation.zurb.com/docs/components/grid.html" target="_blank">Foundation grid system</a></p>
         </div>
     </div>
 
@@ -431,15 +431,15 @@
                     
                     <div class="row">
                         <div class="large-6 columns">
-                            <label for="radio1"><input name="radio1" type="radio" id="radio1" style="display:none;" CHECKED><span class="custom radio checked"></span> Radio Button 1</label>
-                            <label for="radio1"><input name="radio1" type="radio" id="radio1" style="display:none;" disabled><span class="custom radio checked"></span> Radio Button 1</label>
-                            <label for="radio1"><input name="radio1" type="radio" id="radio1" style="display:none;"><span class="custom radio checked"></span> Radio Button 1</label>
+                            <label for="radio1"><input name="radio1" type="radio" id="radio1" CHECKED><span class="custom radio checked"></span> Radio Button 1</label>
+                            <label for="radio1"><input name="radio1" type="radio" id="radio1" disabled><span class="custom radio checked"></span> Radio Button 1</label>
+                            <label for="radio1"><input name="radio1" type="radio" id="radio1"><span class="custom radio checked"></span> Radio Button 1</label>
                             <br />
                         </div>
                         <div class="large-6 columns">
-                            <label for="checkbox1"><input type="checkbox" id="checkbox1" style="display: none;"><span class="custom checkbox"></span> Label for Checkbox</label>
-                            <label for="checkbox2"><input type="checkbox" id="checkbox2" CHECKED style="display: none;"><span class="custom checkbox checked"></span> Label for Checkbox</label>
-                            <label for="checkbox2"><input type="checkbox" id="checkbox2" CHECKED style="display: none;"><span class="custom checkbox checked"></span> Label for Checkbox</label>
+                            <label for="checkbox1"><input type="checkbox" id="checkbox1"><span class="custom checkbox"></span> Label for Checkbox</label>
+                            <label for="checkbox2"><input type="checkbox" id="checkbox2" CHECKED><span class="custom checkbox checked"></span> Label for Checkbox</label>
+                            <label for="checkbox2"><input type="checkbox" id="checkbox2" CHECKED><span class="custom checkbox checked"></span> Label for Checkbox</label>
                         </div>
                     </div>
 
@@ -745,20 +745,26 @@
 
             <!-- TABS EXAMPLE -->
 
-            <div class="section-container tabs" data-section="tabs">
-                <section class="active">
-                    <p class="title" data-section-title><a href="#">Section 1</a></p>
-                    <div class="content" data-section-content>
-                        <p>Content of section 1.</p>
-                    </div>
-                </section>
-                <section>
-                    <p class="title" data-section-title><a href="#">Section 2</a></p>
-                    <div class="content" data-section-content>
-                        <p>Content of section 2.</p>
-                    </div>
-                </section>
-            </div>
+			<dl class="tabs" data-tab>
+				<dd class="active"><a href="#panel2-1">Tab 1</a></dd>
+				<dd><a href="#panel2-2">Tab 2</a></dd>
+				<dd><a href="#panel2-3">Tab 3</a></dd>
+				<dd><a href="#panel2-4">Tab 4</a></dd>
+			</dl>
+			<div class="tabs-content">
+				<div class="content active" id="panel2-1">
+					<p>First panel content goes here...</p>
+				</div>
+				<div class="content" id="panel2-2">
+					<p>Second panel content goes here...</p>
+				</div>
+				<div class="content" id="panel2-3">
+					<p>Third panel content goes here...</p>
+				</div>
+				<div class="content" id="panel2-4">
+					<p>Fourth panel content goes here...</p>
+				</div>
+			</div>
 
 
 
@@ -766,20 +772,26 @@
 
             <!-- ACCORDION EXAMPLE -->
 
-            <div class="section-container accordion" data-section="accordion">
-                <section class="active">
-                    <p class="title" data-section-title><a href="#">Section 1</a></p>
-                    <div class="content" data-section-content>
-                        <p>Content of section 1.</p>
-                    </div>
-                </section>
-                <section>
-                    <p class="title" data-section-title><a href="#">Section 2</a></p>
-                    <div class="content" data-section-content>
-                        <p>Content of section 2.</p>
-                    </div>
-                </section>
-            </div>
+			<dl class="accordion" data-accordion>
+				<dd>
+					<a href="#panel1b">Accordion 1</a>
+					<div id="panel1b" class="content active">
+					Panel 1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					</div>
+				</dd>
+				<dd>
+					<a href="#panel2b">Accordion 2</a>
+					<div id="panel2b" class="content">
+					Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					</div>
+				</dd>
+				<dd>
+					<a href="#panel3b">Accordion 3</a>
+					<div id="panel3b" class="content">
+					Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					</div>
+				</dd>
+			</dl>
 
 
 
@@ -1025,7 +1037,7 @@
 
     <!-- MODAL WINDOW CONTENT -->
 
-    <div id="myModal" class="reveal-modal small">
+    <div id="myModal" class="reveal-modal small" data-reveal>
         <h2>Awesome. I have it.</h2>
         <p class="lead">Your couch.  It is mine.</p>
         <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
