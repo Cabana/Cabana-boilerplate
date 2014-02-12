@@ -13,14 +13,14 @@ If you're on Windows you can either use the [GitHub GUI app for windows](http://
 If you're on a Mac we suggest you install [Homebrew](http://mxcl.github.io/homebrew/) and then install git with `brew install git`.
 
 ### 2. Ruby
-If you're Windows go to [rubyinstall.org](http://rubyinstaller.org/) and follow the steps there.
+If you're Windows go to [rubyinstall.org](http://rubyinstaller.org/) and follow the steps there. (Works with 32-bit version only).
 
 If you're on a Mac you will need to install rvm. A good guide can be found [here](http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/).
 
 You should be on Ruby version 2.0.0 or later when you're done.
 
 ### 2.1. Ruby (Windows only)
-For guard to work, devkit needs to be installed. Download at: http://rubyinstaller.org/downloads/. Docs at: https://github.com/oneclick/rubyinstaller/wiki/development-kit
+For guard to work, devkit needs to be installed. Download at: http://rubyinstaller.org/downloads/ (Choose: "For use with Ruby 2.0 (32bits version only)"). Docs at: https://github.com/oneclick/rubyinstaller/wiki/development-kit
 
 ### 3. Clone down the boilerplate
 Then Git and Ruby have been setup you should be able to clone down the repo with `git clone https://github.com/Cabana/Cabana-boilerplate.git`.
