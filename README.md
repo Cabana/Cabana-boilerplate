@@ -13,7 +13,7 @@ If you're on Windows you can either use the [GitHub GUI app for windows](http://
 If you're on a Mac we suggest you install [Homebrew](http://mxcl.github.io/homebrew/) and then install git with `brew install git`.
 
 ### 2. Ruby
-If you're Windows go to [rubyinstall.org](http://rubyinstaller.org/) and follow the steps there. (Works with 32-bit version only).
+If you're Windows go to [rubyinstall.org](http://rubyinstaller.org/) and follow the steps there. (Works with 32-bit version only, choose v2+).
 
 If you're on a Mac you will need to install rvm. A good guide can be found [here](http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/).
 
