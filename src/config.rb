@@ -13,7 +13,7 @@
 # --style=expanded
 # --style=compressed
 # --debug-info
-@sass_compile_options = '--style=compressed'
+@sass_compile_options = '--style=expanded'
 
 @js_components = [
   
@@ -47,10 +47,8 @@
   "js/cabana/cabana.sayt.js",
   "js/cabana/cabana.offcanvas.js",
   
-  
   "js/jquery.validate/jquery.validate.js",
   "js/jquery.validate/additional-methods.js"
-
 
 ]
 
@@ -58,7 +56,7 @@
 # WHITESPACE_ONLY
 # SIMPLE_OPTIMIZATIONS
 # ADVANCED_OPTIMIZATIONS
-@js_compression_level = 'WHITESPACE_ONLY'
+@js_compression_level = 'CONCAT_ONLY'
 
 # only for build:for_deploy task
 @replacements = {}
