@@ -1,0 +1,23 @@
+﻿/*****************************************
+  HEADER MODULE
+*****************************************/
+
+@include module('header') {
+	
+	$base: #{&};
+
+	// .header{}
+	#{$base}{
+		position:relative;
+	}
+
+	// .header__logo{}
+	#{$base}__logo{
+		
+	}
+
+	#{$base}--small{
+		@extend #{$base};
+	}
+
+}

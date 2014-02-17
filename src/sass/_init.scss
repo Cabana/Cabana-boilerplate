@@ -1,0 +1,8 @@
+// http://mikefowler.me/2013/10/17/support-for-bem-modules-sass-3.3/
+@mixin module($name) {
+  .#{$name} {
+    @at-root {
+      @content;
+    }
+  }
+}
