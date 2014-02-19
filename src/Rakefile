@@ -10,20 +10,15 @@ require 'highline/import'
 require_relative 'solution' if File.exists? 'solution.rb'
 
 @js_build_filename    ||= 'app.js'
-@css_build_dir        ||= '../resources/css'
-@js_build_dir         ||= '../resources/js'
-@img_build_dir        ||= '../resources/img'
-@fonts_build_dir      ||= '../resources/fonts'
+@css_build_dir        ||= ['../resources/css']
+@js_build_dir         ||= ['../resources/js']
+@img_build_dir        ||= ['../resources/img']
+@fonts_build_dir      ||= ['../resources/fonts']
 @export_dir           ||= '../export'
 @js_components        ||= []
 @js_compression_level ||= 'SIMPLE_OPTIMIZATIONS'
 @replacements         ||= {}
 @sass_compile_options ||= '--style=expanded --debug-info'
-
-directory @css_build_dir
-directory @js_build_dir
-directory @img_build_dir
-directory @fonts_build_dir
 
 task default: :build
 
@@ -54,15 +49,18 @@ namespace :build do
   end
 
   desc 'Build css'
-  task css: [@css_build_dir] do
-    system "sass --update --force --quiet sass:#{@css_build_dir} #{@sass_compile_options}"
-    Dir[File.join @css_build_dir, '**', '*'].each do |file|
-      puts "overwrite".yellow + " #{file}"
+  task :css do
+    @css_build_dir.each do |dir|
+      FileUtils.mkdir_p dir unless Dir.exist? dir
+      system "sass --update --force --quiet sass:#{dir} #{@sass_compile_options}"
+      Dir[File.join dir, '**', '*'].each do |file|
+        puts "overwrite".yellow + " #{file}"
+      end
     end
   end
 
   desc 'Minify and concatenate js, and compile coffeescript'
-  task js: [@js_build_dir] do
+  task :js do
     compiler = if @js_compression_level == "CONCAT_ONLY"
                  class Compiler
                    def compile files
@@ -84,21 +82,27 @@ namespace :build do
 
     contents = compiler.compile js
 
-    File.open File.join(@js_build_dir, @js_build_filename), "w" do |file|
-      file.write contents
-    end
+    @js_build_dir.each do |dir|
+      FileUtils.mkdir_p dir unless Dir.exist? dir
+      File.open File.join(dir, @js_build_filename), "w" do |file|
+        file.write contents
+      end
 
-    puts "overwrite".yellow + " #{@js_build_dir}/#{@js_build_filename}"
+      puts "overwrite".yellow + " #{dir}/#{@js_build_filename}"
+    end
   end
 
   desc 'Copy images'
-  task img: [@img_build_dir] do
-    FileUtils.rm_r @img_build_dir
-    FileUtils.cp_r 'img', @img_build_dir
+  task :img do
+    @img_build_dir.each do |dir|
+      FileUtils.mkdir_p dir unless Dir.exist? dir
 
-    Dir.glob(File.join(@img_build_dir, "**", "*")).each do |path|
-      if path.include? '_compressed'
-        File.rename(path, path.gsub('_compressed', ''))
+      FileUtils.rm_r dir
+      FileUtils.cp_r 'img', dir
+      Dir.glob(File.join(dir, "**", "*")).each do |path|
+        if path.include? '_compressed'
+          File.rename(path, path.gsub('_compressed', ''))
+        end
       end
     end
 
@@ -106,9 +110,13 @@ namespace :build do
   end
 
   desc 'Copy fonts'
-  task fonts: [@fonts_build_dir] do
-    remove_files_in @fonts_build_dir
-    font_paths.each {|fp| FileUtils.copy_file fp, "#{@fonts_build_dir}/#{fp.gsub('fonts/', '')}" }
+  task :fonts do
+    @fonts_build_dir.each do |dir|
+      FileUtils.mkdir_p dir unless Dir.exist? dir
+      remove_files_in @fonts_build_dir
+      font_paths.each {|fp| FileUtils.copy_file fp, "#{@fonts_build_dir}/#{fp.gsub('fonts/', '')}" }
+    end
+
     puts "Copied fonts".yellow
   end
 end
