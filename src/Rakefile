@@ -114,7 +114,7 @@ namespace :build do
     @fonts_build_dir.each do |dir|
       FileUtils.mkdir_p dir unless Dir.exist? dir
       remove_files_in @fonts_build_dir
-      font_paths.each {|fp| FileUtils.copy_file fp, "#{@fonts_build_dir}/#{fp.gsub('fonts/', '')}" }
+      font_paths.each {|fp| FileUtils.copy_file fp, "#{dir}/#{fp.gsub('fonts/', '')}" }
     end
 
     puts "Copied fonts".yellow
