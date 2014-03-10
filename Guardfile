@@ -31,8 +31,8 @@ guard :shell do
 end
 
 # Use livereload to automatically refresh the browser
-guard 'livereload' do
-  watch %r{resources/(.+)}
-  watch %r{(.*)\.php$}
-  watch %r{(.*)\.html$}
-end
+# guard 'livereload' do
+#  watch %r{resources/(.+)}
+#  watch %r{(.*)\.php$}
+#  watch %r{(.*)\.html$}
+# end
