@@ -2,22 +2,34 @@
   HEADER MODULE
 *****************************************/
 
-@include module('header') {
+// Legacy, used only with SASS 3.3.0.rc.2
+//@include module('header') {
+//	
+//	$base: #{&};
+//
+//	// .header{}
+//	#{$base}{
+//		position:relative;
+//	}
+//
+//	// .header__logo{}
+//	#{$base}__logo{
+//		
+//	}
+//
+//	#{$base}--small{
+//		@extend #{$base};
+//	}
+//
+//}
+
+// SASS 3.3.0 stable
+.header{
 	
-	$base: #{&};
+	position:relative;
 
-	// .header{}
-	#{$base}{
-		position:relative;
-	}
+	&__logo{}
 
-	// .header__logo{}
-	#{$base}__logo{
-		
-	}
-
-	#{$base}--small{
-		@extend #{$base};
-	}
+	&--small{}
 
 }
