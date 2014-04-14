@@ -18,8 +18,8 @@
 
 @js_components = [
   
-  "js/vendor/custom.modernizr.js",
-  "js/vendor/jquery.js",
+  "js/vendor/modernizr.js",
+  "js/vendor/jquery-1.11.0.min.js",
   "js/vendor/jquery-ui-1.10.3.custom.js",
   "js/vendor/fastclick.js",
   "js/vendor/jquery.autocomplete.js",
@@ -32,12 +32,14 @@
   "js/foundation/foundation.alert.js",
   "js/foundation/foundation.clearing.js",
   "js/foundation/foundation.dropdown.js",
+  "js/foundation/foundation.equalizer.js",
   "js/foundation/foundation.interchange.js",
   "js/foundation/foundation.joyride.js",
   "js/foundation/foundation.magellan.js",
   "js/foundation/foundation.offcanvas.js",
   "js/foundation/foundation.orbit.js",
   "js/foundation/foundation.reveal.js",
+  "js/foundation/foundation.slider.js",
   "js/foundation/foundation.tab.js",
   "js/foundation/foundation.tooltip.js",
   "js/foundation/foundation.topbar.js",
