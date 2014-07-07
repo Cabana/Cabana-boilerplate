@@ -9,7 +9,7 @@
 @img_build_dir   = ['../resources/img']
 @fonts_build_dir = ['../resources/fonts']
 
-@export_dir   = '/Users/davidpedersen/Desktop/export'
+# @export_dir   = '/Users/davidpedersen/Desktop/export'
 
 # --style=expanded
 # --style=compressed
@@ -18,40 +18,39 @@
 
 @js_components = [
   
-  "js/vendor/modernizr.js",
+  "bower_components/modernizr/modernizr.js",
   "js/vendor/jquery-1.11.0.min.js",
   "js/vendor/jquery-ui-1.10.3.custom.js",
-  "js/vendor/fastclick.js",
-  "js/vendor/jquery.autocomplete.js",
-  "js/vendor/jquery.cookie.js",
-  "js/vendor/placeholder.js",
+  "bower_components/fastclick/lib/fastclick.js",
+  "bower_components/devbridge-autocomplete/dist/jquery.autocomplete.min.js",
+  "bower_components/jquery.cookie/jquery.cookie.js",
+  "bower_components/jquery-placeholder/jquery.placeholder.js",
+  "bower_components/jquery-validation/dist/jquery.validate.min.js",
+  "bower_components/jquery-validation/dist/additional-methods.min.js",
   
-  "js/foundation/foundation.js",
-  "js/foundation/foundation.abide.js",
-  "js/foundation/foundation.accordion.js",
-  "js/foundation/foundation.alert.js",
-  "js/foundation/foundation.clearing.js",
-  "js/foundation/foundation.dropdown.js",
-  "js/foundation/foundation.equalizer.js",
-  "js/foundation/foundation.interchange.js",
-  "js/foundation/foundation.joyride.js",
-  "js/foundation/foundation.magellan.js",
-  "js/foundation/foundation.offcanvas.js",
-  "js/foundation/foundation.orbit.js",
-  "js/foundation/foundation.reveal.js",
-  "js/foundation/foundation.slider.js",
-  "js/foundation/foundation.tab.js",
-  "js/foundation/foundation.tooltip.js",
-  "js/foundation/foundation.topbar.js",
+  "bower_components/foundation/js/foundation/foundation.js",
+  "bower_components/foundation/js/foundation/foundation.abide.js",
+  "bower_components/foundation/js/foundation/foundation.accordion.js",
+  "bower_components/foundation/js/foundation/foundation.alert.js",
+  "bower_components/foundation/js/foundation/foundation.clearing.js",
+  "bower_components/foundation/js/foundation/foundation.dropdown.js",
+  "bower_components/foundation/js/foundation/foundation.equalizer.js",
+  "bower_components/foundation/js/foundation/foundation.interchange.js",
+  "bower_components/foundation/js/foundation/foundation.joyride.js",
+  "bower_components/foundation/js/foundation/foundation.magellan.js",
+  "bower_components/foundation/js/foundation/foundation.offcanvas.js",
+  "bower_components/foundation/js/foundation/foundation.orbit.js",
+  "bower_components/foundation/js/foundation/foundation.reveal.js",
+  "bower_components/foundation/js/foundation/foundation.slider.js",
+  "bower_components/foundation/js/foundation/foundation.tab.js",
+  "bower_components/foundation/js/foundation/foundation.tooltip.js",
+  "bower_components/foundation/js/foundation/foundation.topbar.js",
   
   "js/cabana/cabana.browser.js",
   "js/cabana/cabana.FBComments.js",
   "js/cabana/cabana.youtube.js",
   "js/cabana/cabana.sayt.js",
   "js/cabana/cabana.offcanvas.js",
-  
-  "js/jquery.validate/jquery.validate.js",
-  "js/jquery.validate/additional-methods.js"
 
 ]
 
